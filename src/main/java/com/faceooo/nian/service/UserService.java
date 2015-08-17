@@ -53,4 +53,22 @@ public class UserService {
         return json;
     }
 
+    public void insertUserinfo(UserinfoDTO userinfo) {
+
+        try {
+            userInfoDAO.insertUserinfo(userinfo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public UserinfoDTO userLogin(UserinfoDTO userinfo) {
+        try {
+            return  userInfoDAO.queryUserLogin(userinfo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userinfo;
+    }
 }

@@ -21,7 +21,7 @@ public class BaseDao {
 	static {
 		try {
 			Reader reader = Resources
-					.getResourceAsReader("SqlMapConfig.xml");
+					.getResourceAsReader("../SqlMapConfig.xml");
 			sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
 			reader.close();
 		} catch (IOException e) {

@@ -1,4 +1,4 @@
-package utils;
+package com.faceooo.nian.utils;
 
 public class RestConstants {
 	public static final String MAP_TABLES_KEY= "";
@@ -14,13 +14,13 @@ public class RestConstants {
 	public static final String DELETE_IMAGES = "deleteimages";
 	public static final String SOU_INFO = "souinfo";
 	public static final String CREATE_RECORD = "createrecord";
-	public static final String UPDATE_SOUPRO = "updatesoupro";
-	public static final String CREATE_IMAGE = "createimage";
+	public static final String UPDATE_SOUBASEINFO = "updatesoubaseinfo";
+	public static final String CREATE_IMAGE = "/createimage";
 	public static final String SOUCHARGE_TYPE = "souchargetype";
 	public static final String SOU_SEARCH = "sousearch";
-	public static final String CREATE_SOUTYPE = "createsoutype";
-	public static final String UPDATE_SOUTYPE = "updatesoutype";
-	public static final String DELETE_SOUTYPE = "deletesoutype";	
+	public static final String CREATE_SOUTYPE = "/createsoutype";
+	public static final String UPDATE_SOUTYPE = "/updatesoutype";
+	public static final String DELETE_SOUTYPE = "/deletesoutype";
 	public static final String DELETE_SOU = "/deletesou";
 	public static final String USERSOU_HOME = "usersouhome";	
 	public static final String USER_INFO = "userinfo";

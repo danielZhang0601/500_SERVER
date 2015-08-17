@@ -1,4 +1,4 @@
-package utils;
+package com.faceooo.nian.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

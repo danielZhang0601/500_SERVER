@@ -31,5 +31,8 @@ public class UserInfoDAO  extends BaseDao{
 	public void insertUserinfo(UserinfoDTO userinfo)throws SQLException {
 		this.executeInsert("insertUserinfo", userinfo);
 	}
-   
+
+	public UserinfoDTO queryUserLogin(UserinfoDTO userinfo) throws SQLException {
+		return (UserinfoDTO) this.executeQueryForObject("queryUserLogin", userinfo);
+	}
 }
