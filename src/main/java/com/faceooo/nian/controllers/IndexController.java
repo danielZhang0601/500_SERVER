@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = "/")
 public class IndexController {
-    @RequestMapping(value = "/")
+
+    @RequestMapping(value = "/index")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView("test");
         String msg = "Running IndexController.index() method";
