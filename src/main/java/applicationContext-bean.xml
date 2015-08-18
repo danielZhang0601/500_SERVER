@@ -63,7 +63,7 @@
    sqlSessionTemplateBeanName：指定需要使用的sqlSessionTemplate对应的bean名称。-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.faceooo.nian.dao"/>
-        <property name="markerInterface" value="com.faceooo.nian.dao.*"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
 </beans>

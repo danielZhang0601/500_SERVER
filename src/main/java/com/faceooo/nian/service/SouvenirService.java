@@ -27,7 +27,7 @@ public class SouvenirService {
 
     public void deleteSou(String souvenirid) {
         try {
-            souvenirDAO.deleteSou(souvenirid);
+            souDAO.deleteSou(souvenirid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class SouvenirService {
 
     public void deleteSoutype(String soutypeid) {
         try {
-            souvenirDAO.deleteSoutype(soutypeid);
+            souDAO.deleteSoutype(soutypeid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class SouvenirService {
 
     public void updateSoutype(SouvenirtypeDTO soutypedto) {
         try {
-            souvenirDAO.updateSoutype(soutypedto);
+            souDAO.updateSoutype(soutypedto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +52,7 @@ public class SouvenirService {
 
     public void creatSouTypes(SouvenirtypeDTO soutypedto) {
         try {
-            souvenirDAO.creatSouTypes(soutypedto);
+            souDAO.creatSouTypes(soutypedto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,13 +64,13 @@ public class SouvenirService {
         try {
             // 判断按编码搜索是否有记录，若无记录则安装名称搜索
             // 按类型编码和排序码进行搜索
-            List<SouvenirDTO> souList = souvenirDAO.querySouListForSearch(paramMap);
+            List<SouvenirDTO> souList = souDAO.querySouListForSearch(paramMap);
             if (souList != null && souList.size() > 0) {
                 SouvenirDTO soudtoDto = souList.get(0);
                 soupositioninfo.put("souinfo", soudtoDto.getDtoToJson());
 
             } else {// 按照器物名称进行搜索
-                List<SouvenirDTO> souListForName = souvenirDAO
+                List<SouvenirDTO> souListForName = souDAO
                         .querySouListForSearchName(paramMap);
                 JSONArray souListjson = new JSONArray();
                 for (SouvenirDTO soudto : souListForName) {
@@ -88,7 +88,7 @@ public class SouvenirService {
 
     public SouvenirDTO querySouBaseInfoForID(SouvenirDTO soudto) {
         try {
-            return	souvenirDAO.querySouInfoForID(soudto.getId());
+            return	souDAO.querySouInfoForID(soudto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -98,7 +98,7 @@ public class SouvenirService {
 
     public void chargeSoutype(SouvenirDTO soudto) {
         try {
-            souvenirDAO.chargeSoutype(soudto);
+            souDAO.chargeSoutype(soudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class SouvenirService {
 
     public void updateSouBaseInfo(SouvenirDTO soudto) {
         try {
-            souvenirDAO.updateSouBaseInfo(soudto);
+            souDAO.updateSouBaseInfo(soudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -114,7 +114,7 @@ public class SouvenirService {
 
     public void createSouRecord(RecordinfoDTO recorddto) {
         try {
-            souvenirDAO.createSouRecord(recorddto);
+            souDAO.createSouRecord(recorddto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -125,7 +125,7 @@ public class SouvenirService {
         JSONObject souvenirInfoJSON = new JSONObject();
         try {
             // 获取用户图片信息
-            List<ImageDTO> souImagesList = souvenirDAO
+            List<ImageDTO> souImagesList = souDAO
                     .querySouImagesCode(souvenirid);
             JSONArray souImagesListJson = new JSONArray();
             for (ImageDTO image : souImagesList) {
@@ -149,7 +149,7 @@ public class SouvenirService {
             souvenirInfoJSON.put("userreviews", userreview);
 
             //获取藏品的基础信息
-            SouvenirDTO soudto = souvenirDAO.querySouInfoForID(souvenirid);
+            SouvenirDTO soudto = souDAO.querySouInfoForID(souvenirid);
             souvenirInfoJSON.put("soubaseinfo", soudto.getDtoToJson());
 
         } catch (SQLException e) {
@@ -160,7 +160,7 @@ public class SouvenirService {
 
     public void deleteSouRecord(RecordinfoDTO recorddto) {
         try {
-            souvenirDAO.deleteSouRecord(recorddto);
+            souDAO.deleteSouRecord(recorddto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -168,7 +168,7 @@ public class SouvenirService {
 
     public void updateSouRecord(RecordinfoDTO recorddto) {
         try {
-            souvenirDAO.updateSouRecord(recorddto);
+            souDAO.updateSouRecord(recorddto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -183,7 +183,7 @@ public class SouvenirService {
         imagedto.setImagessort("0");//TODO 图片排序功能，后面需要优化
         imagedto.setTimerecord(SysUtils.getNowTimeStr());
         try {
-            souvenirDAO.createSouImage(imagedto);
+            souDAO.createSouImage(imagedto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -194,7 +194,7 @@ public class SouvenirService {
         try {
             soudto.setId(SysUtils.getSouvenirID());
             soudto.setTimerecord(SysUtils.getNowTimeStr());
-            souvenirDAO.createSouvenir(soudto);
+            souDAO.createSouvenir(soudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -203,12 +203,12 @@ public class SouvenirService {
 
     public void deleteImage(String imageId) {
         try {
-            souvenirDAO.deleteImage(imageId);
+            souDAO.deleteImage(imageId);
             ClearQiniuDTO clearqiniudto = new ClearQiniuDTO();
             clearqiniudto.setId(SysUtils.getClearQiniuID());
             clearqiniudto.setImageid(imageId);
             clearqiniudto.setTimerecord(SysUtils.getNowTimeStr());
-            souvenirDAO.createClearQiniu(clearqiniudto);
+            souDAO.createClearQiniu(clearqiniudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -218,7 +218,7 @@ public class SouvenirService {
         JSONArray souListjson = null;
         List<SouvenirDTO> souListForName = null;
         try {
-            souListForName = souvenirDAO.getSouvenirListForType(souvenirDTO);
+            souListForName = souDAO.getSouvenirListForType(souvenirDTO);
         } catch (SQLException e) {
             e.printStackTrace();
         }
