@@ -1,6 +1,5 @@
 package com.faceooo.nian.service;
 
-
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
@@ -26,8 +25,8 @@ public class QiniuBiz {
 	public void uploadSouImages() {
 		Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 		String token=auth.uploadToken("nian", null, 3600, new StringMap().put("saveKey", "userid-souid-imagesid-asdfasdfasdfasdfasdfasdfasdf11118409891212311"));
-		//String filePath ="D://18409891212311.jpg";
-		String filePath ="/Users/yuanlin/Pictures/20060808030011fp_829118.jpg";
+		String filePath ="D://18409891212311.jpg";
+		//String filePath ="/Users/yuanlin/Pictures/20060808030011fp_829118.jpg";
 		
 		
 		

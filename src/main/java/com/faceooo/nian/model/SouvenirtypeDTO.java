@@ -1,6 +1,6 @@
 package com.faceooo.nian.model;
 
-public class SouvenirtypeDTO extends BaseDTO{
+public class SouvenirtypeDTO extends BaseDTO {
 	public String id;
 	public String userid;
 	public String typename;

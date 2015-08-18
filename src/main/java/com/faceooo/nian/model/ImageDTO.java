@@ -3,7 +3,7 @@ package com.faceooo.nian.model;
 public class ImageDTO extends BaseDTO{
 	public String id;
 	public String souvenirid;
-	public String imagescode;
+	public String imagescode;//针对七牛上的图片链接
 	public String imagessort;
 	public String timerecord;
 	
