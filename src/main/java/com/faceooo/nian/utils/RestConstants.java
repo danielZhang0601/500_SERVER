@@ -22,9 +22,8 @@ public class RestConstants {
 	public static final String UPDATE_SOUTYPE = "/updatesoutype";
 	public static final String DELETE_SOUTYPE = "/deletesoutype";
 	public static final String DELETE_SOU = "/deletesou";
-	public static final String USERSOU_HOME = "usersouhome";	
-	public static final String USER_INFO = "userinfo";
     public static final String CREATE_SOU = "/createsou";
+    public static final String SOU_LIST_TYPE = "/soulistbytype";
 	
    //post param
 	public static final String USER_ID = "userid";

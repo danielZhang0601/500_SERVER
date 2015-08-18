@@ -153,7 +153,6 @@ public class SouvenirService {
             souvenirInfoJSON.put("soubaseinfo", soudto.getDtoToJson());
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return souvenirInfoJSON;
@@ -213,5 +212,23 @@ public class SouvenirService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public JSONArray getSouvenirListForType(SouvenirDTO souvenirDTO) {
+        JSONArray souListjson = null;
+        List<SouvenirDTO> souListForName = null;
+        try {
+            souListForName = souvenirDAO.getSouvenirListForType(souvenirDTO);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (souListForName!=null){
+            souListjson=new JSONArray();
+            for (SouvenirDTO soudto : souListForName) {
+                souListjson.add(soudto.getDtoToJson());
+            }
+        }
+
+        return souListjson;
     }
 }

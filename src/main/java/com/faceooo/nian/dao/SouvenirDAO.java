@@ -88,4 +88,8 @@ public class SouvenirDAO extends BaseDao{
     public void createClearQiniu(ClearQiniuDTO clearqiniudto)  throws SQLException{
         this.executeInsert("createClearQiniu",clearqiniudto);
     }
+
+    public List<SouvenirDTO> getSouvenirListForType(SouvenirDTO souvenirDTO)  throws SQLException {
+        return this.executeQueryForList("getSouvenirListForType",souvenirDTO);
+    }
 }

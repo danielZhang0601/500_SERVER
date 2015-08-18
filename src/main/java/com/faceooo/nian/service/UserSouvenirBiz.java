@@ -83,7 +83,6 @@ public class UserSouvenirBiz {
 			souvenirInfoJSON.put("soubaseinfo", soudto.getDtoToJson());
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return souvenirInfoJSON;

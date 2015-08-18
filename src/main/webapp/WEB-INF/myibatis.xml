@@ -76,6 +76,11 @@
 		select * from userinfo where userphone=#userphone# AND  userpwd=#userpwd#
 	</select>
 
+    <select id="getSouvenirListForType" resultClass="SouvenirDTO"  parameterClass="SouvenirDTO">
+        select * from souvenir where userid=#userid# AND  souvenirtypeid=#souvenirtypeid# order by dynastycode LIMIT 20
+    </select>
+
+
 
 <!--#########################-->
 <!--### DELETE ZONE       ###-->

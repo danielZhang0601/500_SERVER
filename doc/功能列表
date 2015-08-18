@@ -13,6 +13,8 @@
 	  -URL：?action=createsoutype     post:soutypename=瓷器
 	  -URL：?action=sousearch           post：soucode=A11 或soucode=器物名称
 	  -URL：?action=souchargetype    post：souid= &soutypeid=   系统增加判断若soutypeid为当前类型则不需要更换，更换分类，牵扯到物品排序问题
+	  -URL：?action=soulistbytype    post：soutypeid=
+
 	  -显示内容：用户物品分类列表，每个分类的藏品数量
 	  		            默认的第一个分类的藏品列表，按照年代进行排序，统计每个年代的藏品数量
 	  -搜索显示内容：若只搜索到一件物品则定位其分类和器物在页面上的位置。若多个器物则列出所有器物。

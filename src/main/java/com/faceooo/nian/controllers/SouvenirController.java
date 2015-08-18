@@ -126,4 +126,14 @@ public class SouvenirController {
         souvenirService.deleteImage(imageId);
     }
 
+    @RequestMapping(value = RestConstants.SOU_LIST_TYPE)
+    public ModelAndView souListByType(String souTypeID,String userid){
+        ModelAndView mav = new ModelAndView();
+        SouvenirDTO soudto = new SouvenirDTO();
+        soudto.setUserid(userid);
+        soudto.setSouvenirtypeid(souTypeID);
+        mav.addObject("souListJson", souvenirService.getSouvenirListForType(soudto));
+        return mav;
+    }
+
 }
