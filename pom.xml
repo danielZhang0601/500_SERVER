@@ -51,8 +51,8 @@
 
       <dependency>
           <groupId>com.ibatis</groupId>
-          <artifactId>ibatis-sqlmap</artifactId>
-          <version>2.1.0.565</version>
+          <artifactId>ibatis2-sqlmap</artifactId>
+          <version>2.1.7.597</version>
       </dependency>
 
       <dependency>
@@ -96,6 +96,49 @@
           <artifactId>mysql-connector-java</artifactId>
           <version>5.1.36</version>
       </dependency>
+
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>3.2.7</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>1.2.2</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-collections4</artifactId>
+          <version>4.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>commons-dbcp</groupId>
+          <artifactId>commons-dbcp</artifactId>
+          <version>1.4</version>
+      </dependency>
+
+      <dependency>
+          <groupId>commons-pool</groupId>
+          <artifactId>commons-pool</artifactId>
+          <version>1.6</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>4.0.6.RELEASE</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>4.0.6.RELEASE</version>
+      </dependency>
+
 
   </dependencies>
   <build>

@@ -1,7 +1,7 @@
 package com.faceooo.nian.service;
 
-import com.faceooo.nian.dao.SouvenirDAO;
-import com.faceooo.nian.dao.UserInfoDAO;
+import com.faceooo.nian.dao.SouDAO;
+import com.faceooo.nian.dao.UserDAO;
 import com.faceooo.nian.model.*;
 import com.faceooo.nian.utils.SysUtils;
 import org.json.simple.JSONArray;
@@ -20,10 +20,10 @@ import java.util.Map;
 public class SouvenirService {
 
     @Autowired
-    SouvenirDAO souvenirDAO;
+    SouDAO souDAO;
 
     @Autowired
-    UserInfoDAO userInfoDAO;
+    UserDAO userDAO;
 
     public void deleteSou(String souvenirid) {
         try {

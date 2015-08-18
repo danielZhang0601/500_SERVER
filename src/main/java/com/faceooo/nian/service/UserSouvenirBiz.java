@@ -1,7 +1,5 @@
 package com.faceooo.nian.service;
 
-import com.faceooo.nian.dao.SouvenirDAO;
-import com.faceooo.nian.dao.UserInfoDAO;
 import com.faceooo.nian.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
