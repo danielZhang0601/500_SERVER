@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("unchecked")
+
 public class UserSouvenirBiz {
 
 	private UserInfoDAO userdao = new UserInfoDAO();
@@ -18,9 +18,7 @@ public class UserSouvenirBiz {
 
 	/**
 	 * 通过用户id获取用户的分类信息和home页的物品信息
-	 * 
-	 * @param userName
-	 * @return
+	 *
 	 */
 
 	public JSONObject getUserHomeInfo(UserinfoDTO userinfo) {

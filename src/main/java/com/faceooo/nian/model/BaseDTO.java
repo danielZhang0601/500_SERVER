@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class BaseDTO {
 
-	@SuppressWarnings("unchecked")
+
 	public JSONObject getDtoToJson() {
 		JSONObject objectDto = new JSONObject();
 		try {
