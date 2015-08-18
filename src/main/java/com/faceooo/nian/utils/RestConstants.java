@@ -5,25 +5,26 @@ public class RestConstants {
 	public static final String ACTION_PARAM = "action";
 	
 	//action
-	public static final String USER_LOGIN = "userlogin";
-	public static final String USER_REG = "userreg";
+	public static final String USER_LOGIN = "/userlogin";
+	public static final String USER_REG = "/userreg";
 	public static final String USER_HOME = "/usersouhome";
-	public static final String USER_WX = "shareweixin";
-	public static final String UPDATE_RECORD = "updaterecord";
-	public static final String DELETE_RECORD = "deleterecord";
-	public static final String DELETE_IMAGES = "deleteimages";
-	public static final String SOU_INFO = "souinfo";
-	public static final String CREATE_RECORD = "createrecord";
-	public static final String UPDATE_SOUBASEINFO = "updatesoubaseinfo";
+	public static final String USER_WX = "/shareweixin";
+	public static final String UPDATE_RECORD = "/updaterecord";
+	public static final String DELETE_RECORD = "/deleterecord";
+	public static final String DELETE_IMAGES = "/deleteimages";
+	public static final String SOU_INFO = "/souinfo";
+	public static final String CREATE_RECORD = "/createrecord";
+	public static final String UPDATE_SOUBASEINFO = "/updatesoubaseinfo";
 	public static final String CREATE_IMAGE = "/createimage";
-	public static final String SOUCHARGE_TYPE = "souchargetype";
-	public static final String SOU_SEARCH = "sousearch";
+	public static final String SOUCHARGE_TYPE = "/souchargetype";
+	public static final String SOU_SEARCH = "/sousearch";
 	public static final String CREATE_SOUTYPE = "/createsoutype";
 	public static final String UPDATE_SOUTYPE = "/updatesoutype";
 	public static final String DELETE_SOUTYPE = "/deletesoutype";
 	public static final String DELETE_SOU = "/deletesou";
 	public static final String USERSOU_HOME = "usersouhome";	
 	public static final String USER_INFO = "userinfo";
+    public static final String CREATE_SOU = "/createsou";
 	
    //post param
 	public static final String USER_ID = "userid";

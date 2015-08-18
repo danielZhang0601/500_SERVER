@@ -9,7 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service("qiniuService")
 public class QiniuService {
+     public void uploadToQiniu(byte[] bytes, String imageId) {
 
+
+
+     }
 
 
 }

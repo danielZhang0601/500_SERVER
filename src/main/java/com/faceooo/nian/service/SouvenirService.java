@@ -3,6 +3,7 @@ package com.faceooo.nian.service;
 import com.faceooo.nian.dao.SouvenirDAO;
 import com.faceooo.nian.dao.UserInfoDAO;
 import com.faceooo.nian.model.*;
+import com.faceooo.nian.utils.SysUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -175,4 +176,20 @@ public class SouvenirService {
 
     }
 
+    public String createImages(String userid, String souid) {
+        String imageid= userid+"-"+souid+"-"+ SysUtils.getImageID();
+
+        return imageid;
+    }
+
+    public void createSouvenir(SouvenirDTO soudto) {
+        try {
+            soudto.setId(SysUtils.getSouvenirID());
+            soudto.setTimerecord(SysUtils.getNowTimeStr());
+            souvenirDAO.createSouvenir(soudto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

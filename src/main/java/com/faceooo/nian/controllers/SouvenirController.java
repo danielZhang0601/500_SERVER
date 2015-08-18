@@ -114,4 +114,11 @@ public class SouvenirController {
         souvenirService.updateSouRecord(recorddto);
     }
 
+    @RequestMapping(value = RestConstants.CREATE_SOU)
+    public void createSou(String userid){
+        SouvenirDTO soudto = new SouvenirDTO();
+        soudto.setUserid(userid);
+        souvenirService.createSouvenir(soudto);
+    }
+
 }

@@ -149,6 +149,13 @@
 		values
 		(#id#,#souvenirid#,#title#,#content#,#timerecord#)
 	</insert>
+
+    <insert id="createSouvenir" parameterClass="SouvenirDTO">
+        insert into
+        souvenir (id,userid,timerecord)
+        values
+        (#id#,#userid#,#timerecord#)
+    </insert>
 	
 
 </sqlMap>

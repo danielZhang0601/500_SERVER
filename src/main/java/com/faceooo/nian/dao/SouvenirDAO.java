@@ -72,5 +72,8 @@ public class SouvenirDAO extends BaseDao{
 		this.executeQueryForUpdate("updateSouRecord", recorddto);
 		
 	}
-   
+
+    public void createSouvenir(SouvenirDTO soudto) throws SQLException {
+        this.executeInsert("createSouvenir", soudto);
+    }
 }

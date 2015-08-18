@@ -18,6 +18,7 @@
 	  -搜索显示内容：若只搜索到一件物品则定位其分类和器物在页面上的位置。若多个器物则列出所有器物。
 	  		  
     2、新增器物功能-用户上传图片，填写评论，选择年代，
+      -URL：?action=createsou    post：userid=  创建物品基础信息---点击新增藏品按钮调用传 userid
       -URL：?action=createimage  新增图片
       -URL：?action=updatesoupro 更新器物属性 -长、宽、高、重量、年代
       -URL：?action=createrecord 新增用户评论
