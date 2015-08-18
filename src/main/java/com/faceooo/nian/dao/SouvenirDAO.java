@@ -76,4 +76,16 @@ public class SouvenirDAO extends BaseDao{
     public void createSouvenir(SouvenirDTO soudto) throws SQLException {
         this.executeInsert("createSouvenir", soudto);
     }
+
+    public void createSouImage(ImageDTO imagedto) throws SQLException {
+        this.executeInsert("createSouImage", imagedto);
+    }
+
+    public void deleteImage(String imageId)  throws SQLException {
+        this.executeDelete("deleteImage",imageId);
+    }
+
+    public void createClearQiniu(ClearQiniuDTO clearqiniudto)  throws SQLException{
+        this.executeInsert("createClearQiniu",clearqiniudto);
+    }
 }

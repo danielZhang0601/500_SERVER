@@ -23,11 +23,16 @@ public class SysUtils {
 	public static String getrecordid() {
 		return "R"+Long.toString(System.currentTimeMillis());
 	}
+
     public static String getImageID() {
         return "I"+Long.toString(System.currentTimeMillis());
     }
 
     public static String getSouvenirID() {
         return "S"+Long.toString(System.currentTimeMillis());
+    }
+
+    public static String getClearQiniuID() {
+        return "CQ"+Long.toString(System.currentTimeMillis());
     }
 }

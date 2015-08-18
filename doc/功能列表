@@ -30,7 +30,7 @@
 	  -操作方式：用户进入器物详情页面
 	  -图片删除方式：长按图片选择删除
 	  -删除评论信息方式：左边滑动删除操作
-	  -URL：?action=deleteimages   post:    imageid=
+	  -URL：?action=deleteimages   post:    imageid= //删除图片功能，从图片表把记录删除，在建个删除图片的表批量的从七牛删除
 	  -URL：?action=deleterecord    post：  recordid=
 	  -URL：?action=updaterecord   post：  recordid=&recordcontent=
 	  -post传输：图片数据流、新增评论信息、修改的年代、长、宽、高、重量      

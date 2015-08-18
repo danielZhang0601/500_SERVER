@@ -178,7 +178,16 @@ public class SouvenirService {
 
     public String createImages(String userid, String souid) {
         String imageid= userid+"-"+souid+"-"+ SysUtils.getImageID();
-
+        ImageDTO imagedto= new ImageDTO();
+        imagedto.setId(imageid);
+        imagedto.setSouvenirid(souid);
+        imagedto.setImagessort("0");//TODO 图片排序功能，后面需要优化
+        imagedto.setTimerecord(SysUtils.getNowTimeStr());
+        try {
+            souvenirDAO.createSouImage(imagedto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return imageid;
     }
 
@@ -191,5 +200,18 @@ public class SouvenirService {
             e.printStackTrace();
         }
 
+    }
+
+    public void deleteImage(String imageId) {
+        try {
+            souvenirDAO.deleteImage(imageId);
+            ClearQiniuDTO clearqiniudto = new ClearQiniuDTO();
+            clearqiniudto.setId(SysUtils.getClearQiniuID());
+            clearqiniudto.setImageid(imageId);
+            clearqiniudto.setTimerecord(SysUtils.getNowTimeStr());
+            souvenirDAO.createClearQiniu(clearqiniudto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

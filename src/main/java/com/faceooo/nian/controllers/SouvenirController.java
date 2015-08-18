@@ -121,4 +121,9 @@ public class SouvenirController {
         souvenirService.createSouvenir(soudto);
     }
 
+    @RequestMapping(value = RestConstants.DELETE_IMAGES)
+    public void deleteImages(String imageId){//在image表删除记录，在clearqiniu表增加记录
+        souvenirService.deleteImage(imageId);
+    }
+
 }

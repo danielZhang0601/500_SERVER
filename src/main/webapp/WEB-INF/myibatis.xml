@@ -2,12 +2,13 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap>
 	<!-- 通过typeAlias使得我们在下面使用Student实体类的时候不需要写包名 -->
-	<typeAlias alias="UserinfoDTO" type="com.vugstone.nian.modle.UserinfoDTO" />
-	<typeAlias alias="SouvenirDTO" type="com.vugstone.nian.modle.SouvenirDTO" />
-	<typeAlias alias="ImageDTO" type="com.vugstone.nian.modle.ImageDTO" />
-	<typeAlias alias="SouvenirtypeDTO" type="com.vugstone.nian.modle.SouvenirtypeDTO" />
-	<typeAlias alias="RecordinfoDTO" type="com.vugstone.nian.modle.RecordinfoDTO" />
-	
+	<typeAlias alias="UserinfoDTO" type="com.faceooo.nian.model.UserinfoDTO" />
+	<typeAlias alias="SouvenirDTO" type="com.faceooo.nian.model.SouvenirDTO" />
+	<typeAlias alias="ImageDTO" type="com.faceooo.nian.model.ImageDTO" />
+	<typeAlias alias="SouvenirtypeDTO" type="com.faceooo.nian.model.SouvenirtypeDTO" />
+	<typeAlias alias="RecordinfoDTO" type="com.faceooo.nian.model.RecordinfoDTO" />
+    <typeAlias alias="ClearQiniuDTO" type="com.faceooo.nian.model.ClearQiniuDTO" />
+
 
 <!--#########################-->
 <!--### SELECT ZONE       ###-->
@@ -92,6 +93,10 @@
 		delete from recordinfo where id=#id#
 	</delete>
 
+    <delete id="deleteImage" parameterClass="String">
+        delete from image where id=#value#
+    </delete>
+
 
 
 
@@ -156,7 +161,22 @@
         values
         (#id#,#userid#,#timerecord#)
     </insert>
-	
+
+    <insert id="createSouImage" parameterClass="ImageDTO">
+        insert into
+        image (id,souvenirid,imagecode,imagesort,timerecord)
+        values
+        (#id#,#souvenirid#,#imagecode#,#imagesort#,#timerecord#)
+    </insert>
+
+    <insert id="createClearQiniu" parameterClass="ClearQiniuDTO">
+        insert into
+        clearqiniu (id,imageid,timerecord)
+        values
+        (#id#,#imageid#,#timerecord#)
+    </insert>
+
+
 
 </sqlMap>
 	
