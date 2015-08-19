@@ -4,115 +4,110 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.faceooo.nian.dao.SouDAO">
-	<!--#########################-->
-	<!--### SELECT ZONE       ###-->
-	<!--#########################-->
-	<select id="querySouImagesCode" resultType="ImageDTO"
-			parameterType="String">
-		select * from image where souvenirid=#value#
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
+	<!--#{#{#{ SELECT ZONE       #{#{#{-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
+
+	<select id="querySouImagesCode" resultType="ImageDTO" parameterType="String">
+		select * from image where souvenirid = #{value}
 	</select>
 
 	<select id="queryUserSouListForHome" resultType="SouvenirDTO"
 			parameterType="UserinfoDTO">
 		select sou.* from souvenir sou , souvenirtype sout
 		where sout.typesort='1' and sou.souvenirtypeid=sout.id and
-		userid=#userid# limit 10
+		sout.userid = #{id} limit 10
 	</select>
 
 	<select id="querySouListForSearch" resultType="SouvenirDTO"
 			parameterType="java.util.HashMap">
 		select sou.* from souvenir sou, own oo where
-		sou.souvenirtypecode=#souvenircode#
+		sou.souvenirtypecode = #{souvenircode}
 		and oo.souvenirid = sou.id and
-		oo.userid=#userid#
+		oo.userid= #{userid}
 	</select>
 
 	<select id="querySouListForSearchName" resultType="SouvenirDTO"
 			parameterType="java.util.HashMap">
 		select sou.* from souvenir sou, own oo where sou.name
-		like '%'||#souvenircode#||'%'
+		like '%'|| #{souvenircode} ||'%'
 		and oo.souvenirid = sou.id and
-		oo.userid=#userid#
-	</select>
-
-	<select id="queryUserSouTypeList" resultType="SouvenirtypeDTO"
-			parameterType="UserinfoDTO">
-		select * from souvenirtype where userid=#id#
+		oo.userid = #{userid}
 	</select>
 
 	<select id="querySoureviewList" resultType="String"
 			parameterType="String">
-		select content from recordinfo where souvenirid=#value#
+		select content from recordinfo where souvenirid = #{value}
 	</select>
 
 
 	<select id="querySouInfoForID" resultType="SouvenirDTO"
 			parameterType="String">
-		select * from souvenir where id=#value#
+		select * from souvenir where id = #{value}
 	</select>
 
 	<select id="getSouvenirListForType" resultType="SouvenirDTO"  parameterType="SouvenirDTO">
-		select * from souvenir where userid=#userid# AND  souvenirtypeid=#souvenirtypeid# order by dynastycode LIMIT 20
+		select * from souvenir where userid = #{userid} AND  souvenirtypeid = #{souvenirtypeid} order by dynastycode LIMIT 20
 	</select>
 
-	<!--#########################-->
-	<!--### DELETE ZONE       ###-->
-	<!--#########################-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
+	<!--#{#{#{ DELETE ZONE       #{#{#{-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
 
 	<delete id="deleteSou" parameterType="String">
-		delete from souvenir where id=#value#
+		delete from souvenir where id = #{value}
 	</delete>
 
 	<delete id="deleteSoutype" parameterType="String">
-		delete from souvenirtype where id=#value#
+		delete from souvenirtype where id = #{value}
 	</delete>
 
 	<delete id="deleteSouRecord" parameterType="RecordinfoDTO">
-		delete from recordinfo where id=#id#
+		delete from recordinfo where id = #{id}
 	</delete>
 
 	<delete id="deleteImage" parameterType="String">
-		delete from image where id=#value#
+		delete from image where id = #{value}
 	</delete>
 
-	<!--#########################-->
-	<!--### UPDATE ZONE       ###-->
-	<!--#########################-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
+	<!--#{#{#{ UPDATE ZONE       #{#{#{-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
 
 	<update id="updateSoutype" parameterType="SouvenirtypeDTO">
 		update souvenirtype set
-		typename=#typename# where id=#id#
+		typename = #{typename} where id = #{id}
 	</update>
 
 	<update id="chargeSoutype" parameterType="SouvenirDTO">
 		update souvenir set
-		souvenirtypeid=#souvenirtypeid# where id=#id#
+		souvenirtypeid = #{souvenirtypeid} where id = #{id}
 	</update>
 
 	<update id="updateSouBaseInfo" parameterType="SouvenirDTO">
 		update souvenir set
-		dynastycode=#dynastycode#,lengths=#lengths#, wides=#wides#, highs=#highs#, weights=#weights#, where id=#id#
+		dynastycode = #{dynastycode},lengths= #{lengths}, wides = #{wides}, highs = #{highs}, weights = #{weights} where  id = #{id}
 	</update>
 
 	<update id="updateSouRecord" parameterType="RecordinfoDTO">
 		update recordinfo set
-		content=#content#,timerecord=#timerecord#  where id=#id#
+		content = #{content},timerecord = #{timerecord}  where id = #{id}
 	</update>
 
 
 
-	<!--#########################-->
-	<!--### INSERT ZONE       ###-->
-	<!--#########################-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
+	<!--#{#{#{ INSERT ZONE       #{#{#{-->
+	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
 
 	<!-- typesort 处理方式，有待优化 -->
 	<insert id="creatSouTypes" parameterType="SouvenirtypeDTO">
 		insert into
 		souvenirtype (id,userid,typesort,typename,typecount,timerecord)
 		values
-		(#id#,#userid#,#typesort#,#typename#,#typecount#,#timerecord#)\
+		(#{id#{,#{userid#{,#{typesort#{,#{typename#{,#{typecount#{,#{timerecord#{)\
 		<selectKey resultType="String" keyProperty="typesort">
-			select count(*)+1 from souvenirtype where userid=#userid#
+			select count(*)+1 from souvenirtype where userid=#{userid#{
 		</selectKey>
 	</insert>
 
@@ -120,28 +115,28 @@
 		insert into
 		recordinfo (id,souvenirid,title,content,timerecord)
 		values
-		(#id#,#souvenirid#,#title#,#content#,#timerecord#)
+		(#{id},#{souvenirid},#{title},#{content},#{timerecord})
 	</insert>
 
 	<insert id="createSouvenir" parameterType="SouvenirDTO">
 		insert into
 		souvenir (id,userid,timerecord)
 		values
-		(#id#,#userid#,#timerecord#)
+		(#{id},#{userid},#{timerecord})
 	</insert>
 
 	<insert id="createSouImage" parameterType="ImageDTO">
 		insert into
 		image (id,souvenirid,imagecode,imagesort,timerecord)
 		values
-		(#id#,#souvenirid#,#imagecode#,#imagesort#,#timerecord#)
+		(#{id},#{souvenirid},#{imagecode},#{imagesort},#{timerecord})
 	</insert>
 
 	<insert id="createClearQiniu" parameterType="ClearQiniuDTO">
 		insert into
 		clearqiniu (id,imageid,timerecord)
 		values
-		(#id#,#imageid#,#timerecord#)
+		(#{id},#{imageid},#{timerecord})
 	</insert>
 
 </mapper>

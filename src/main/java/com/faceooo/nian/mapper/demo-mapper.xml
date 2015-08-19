@@ -3,17 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "
         http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.faceooo.nian.dao.IDemoDAO">
-       <resultMap id="DemoMap" type="Demo">
-              <id property="id" column="id" />
-              <result property="uname" column="uname" jdbcType="VARCHAR"/>
-              <result property="pwd" column="pwd" jdbcType="VARCHAR"/>
-              <result property="phone" column="phone" jdbcType="VARCHAR"/>
-              <result property="nick" column="nick" jdbcType="VARCHAR"/>
-       </resultMap>
 
-       <select id="getDemo" parameterType="string" resultMap="DemoMap">
+
+       <select id="getDemo" parameterType="string" resultType="UserinfoDTO">
               SELECT *
-              FROM demo  WHERE uname = #{username}
+              FROM userinfo  WHERE username = #{username}
        </select>
 
        <!--<select id="findAll" resultMap="UserMap" fetchSize="1">-->

@@ -1,6 +1,6 @@
 package com.faceooo.nian.dao;
 
-import com.faceooo.nian.model.DemoDTO;
+import com.faceooo.nian.model.UserinfoDTO;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
@@ -11,5 +11,5 @@ import java.sql.SQLException;
 @Repository("demoDAO")
 public interface IDemoDAO {
 
-    public DemoDTO getDemo(String username) throws SQLException;
+    public UserinfoDTO getDemo(String username) throws SQLException;
 }
