@@ -23,6 +23,6 @@ public interface UserDAO {
 
     public void insertUserinfo(UserinfoDTO userinfo)throws SQLException;
 
-    public UserinfoDTO queryUserLogin(UserinfoDTO userinfo)throws SQLException;
+    public UserinfoDTO queryUserLogin(UserinfoDTO userinfo)throws SQLException  ;
 
 }
