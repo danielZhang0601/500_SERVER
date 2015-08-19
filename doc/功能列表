@@ -6,7 +6,7 @@
 	  -删除器物分类：长按器物分类，选择删除按钮
 	  -点击新增器物类别：弹出输入框，输入类别，点击确认
 	  -用户对器物更换分类功能：拖动器物到分类列表上方
-	  -URL：?action=usersouhome    
+	  -URL：/usersouhome?userid=18675520826&userphone=18675520826
 	  -URL：?action=deletesou            post:souid=
 	  -URL：?action=deletesoutype     post:soutypeid=     
 	  -URL：?action=updatesoutype    post:soutypeid=&soutypename=     
