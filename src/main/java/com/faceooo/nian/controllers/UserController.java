@@ -17,38 +17,38 @@ import com.faceooo.nian.utils.RestConstants;
 @Controller
 public class UserController {
 
-    @Autowired
-    UserService userService;
-
-    @RequestMapping(value = RestConstants.USER_HOME)
-    public ModelAndView userhome(String userid,String userphone) {
-        ModelAndView mav = new ModelAndView();
-        UserinfoDTO userinfo= new UserinfoDTO();
-        userinfo.setId(userid);
-        userinfo.setUserphone(userphone);
-        mav.addObject("userHomeJson", userService.getUserHomeInfo(userinfo));
-        return mav;
-    }
-
-    @RequestMapping(value = RestConstants.USER_REG)
-    public ModelAndView getUserReg(UserinfoDTO userinfo) {
-        ModelAndView mav = new ModelAndView();
-        userService.insertUserinfo(userinfo);
-        mav.addObject("userHomeJson", userinfo.getDtoToJson());
-        return mav;
-    }
-
-
-    @RequestMapping(value = RestConstants.USER_LOGIN)
-    public ModelAndView userLogin(String userphone,String userpwd) {
-        ModelAndView mav = new ModelAndView();
-        UserinfoDTO userinfo= new UserinfoDTO();
-        userinfo.setUserpwd(userpwd);
-        userinfo.setUserphone(userphone);
-        userinfo= userService.userLogin(userinfo);
-        mav.addObject("userLoginInfoJson",userinfo.getDtoToJson());
-        return mav;
-    }
+//    @Autowired
+//    UserService userService;
+//
+//    @RequestMapping(value = RestConstants.USER_HOME)
+//    public ModelAndView userhome(String userid,String userphone) {
+//        ModelAndView mav = new ModelAndView();
+//        UserinfoDTO userinfo= new UserinfoDTO();
+//        userinfo.setId(userid);
+//        userinfo.setUserphone(userphone);
+//        mav.addObject("userHomeJson", userService.getUserHomeInfo(userinfo));
+//        return mav;
+//    }
+//
+//    @RequestMapping(value = RestConstants.USER_REG)
+//    public ModelAndView getUserReg(UserinfoDTO userinfo) {
+//        ModelAndView mav = new ModelAndView();
+//        userService.insertUserinfo(userinfo);
+//        mav.addObject("userHomeJson", userinfo.getDtoToJson());
+//        return mav;
+//    }
+//
+//
+//    @RequestMapping(value = RestConstants.USER_LOGIN)
+//    public ModelAndView userLogin(String userphone,String userpwd) {
+//        ModelAndView mav = new ModelAndView();
+//        UserinfoDTO userinfo= new UserinfoDTO();
+//        userinfo.setUserpwd(userpwd);
+//        userinfo.setUserphone(userphone);
+//        userinfo= userService.userLogin(userinfo);
+//        mav.addObject("userLoginInfoJson",userinfo.getDtoToJson());
+//        return mav;
+//    }
 
 
 }
