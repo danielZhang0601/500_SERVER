@@ -26,7 +26,6 @@
           <artifactId>spring-beans</artifactId>
           <version>4.0.0.RELEASE</version>
       </dependency>
-
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-web</artifactId>
@@ -37,6 +36,12 @@
           <artifactId>spring-webmvc</artifactId>
           <version>4.0.0.RELEASE</version>
       </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-beans</artifactId>
+          <version>4.0.0.RELEASE</version>
+      </dependency>
+
       <dependency>
           <groupId>com.qiniu</groupId>
           <artifactId>qiniu-java-sdk</artifactId>
@@ -49,6 +54,48 @@
           <version>1.1.1</version>
       </dependency>
 
+      <dependency>
+          <groupId>commons-dbcp</groupId>
+          <artifactId>commons-dbcp</artifactId>
+          <version>1.4</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>3.3.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>1.2.3</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>3.4</version>
+      </dependency>
+
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+          <version>2.5</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>4.2.0.RELEASE</version>
+      </dependency>
+
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.36</version>
+      </dependency>
+<!--
       <dependency>
           <groupId>com.ibatis</groupId>
           <artifactId>ibatis-sqlmap</artifactId>
@@ -96,10 +143,29 @@
           <artifactId>mysql-connector-java</artifactId>
           <version>5.1.36</version>
       </dependency>
-
+-->
   </dependencies>
   <build>
     <finalName>500nian</finalName>
+      <!--
+    这样也可以把所有的xml文件，打包到相应位置。
+    -->
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
         <plugins>
             <!-- compiler插件, 设定JDK版本 -->
             <plugin>

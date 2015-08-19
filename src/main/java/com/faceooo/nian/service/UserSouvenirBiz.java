@@ -19,7 +19,7 @@ public class UserSouvenirBiz {
 	/**
 	 * 通过用户id获取用户的分类信息和home页的物品信息
 	 * 
-	 * @param userName
+	 * @param
 	 * @return
 	 */
 
