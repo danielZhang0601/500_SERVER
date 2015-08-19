@@ -1,6 +1,7 @@
 package com.faceooo.nian.service;
 
 import com.faceooo.nian.dao.SouDAO;
+import com.faceooo.nian.dao.UserDAO;
 import com.faceooo.nian.model.SouvenirtypeDTO;
 import com.faceooo.nian.model.UserinfoDTO;
 import org.json.simple.JSONArray;
