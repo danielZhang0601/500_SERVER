@@ -1,5 +1,7 @@
 package com.faceooo.nian.service;
 
+import com.faceooo.nian.dao.SouDAO;
+import com.faceooo.nian.model.ImageDTO;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
@@ -7,7 +9,11 @@ import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yuanlin on 15/8/17.
@@ -16,6 +22,9 @@ import org.springframework.stereotype.Service;
 
 @Service("qiniuService")
 public class QiniuService {
+
+    @Autowired
+    SouDAO souDAO;
 
     public static final String ACCESS_KEY = "eY5FxmhOnLWXx7BXbhnmIVYlpsF-U_GBAKUKdtTV";
     public static final String SECRET_KEY = "Gx_nUEYTyzw0V8TO9ufK8HuvPmi3AnxvH5OnKDzm";
@@ -43,4 +52,17 @@ public class QiniuService {
             }
         }
      }
+
+    public List<ImageDTO> getSouSmallImagesList(Map paramMap) {
+        List<ImageDTO> smallImagesList= souDAO.getSouSmallImagesList(paramMap);
+        for(ImageDTO smallImage : smallImagesList){
+
+        }
+
+    }
+
+    public ImageDTO getSouOneBigImage(ImageDTO imageDTO) {
+
+
+    }
 }
