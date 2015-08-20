@@ -7,7 +7,8 @@ public class ImageDTO extends BaseDTO{
 	public String imagescode;//针对七牛上的图片链接
 	public String imagessort;
 	public String timerecord;
-
+    public String imagesmallurl;
+    public String imageorigurl;
 
 
     public String getImagescode() {
@@ -46,6 +47,21 @@ public class ImageDTO extends BaseDTO{
 
     public void setUserid(String userid) {
         this.userid = userid;
+    }
+    public String getImagesmallurl() {
+        return imagesmallurl;
+    }
+
+    public void setImagesmallurl(String imagesmallurl) {
+        this.imagesmallurl = imagesmallurl;
+    }
+
+    public String getImageorigurl() {
+        return imageorigurl;
+    }
+
+    public void setImageorigurl(String imageorigurl) {
+        this.imageorigurl = imageorigurl;
     }
 
 	

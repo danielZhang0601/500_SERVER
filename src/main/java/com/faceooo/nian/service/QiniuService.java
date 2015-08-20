@@ -12,6 +12,7 @@ import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -31,10 +32,13 @@ public class QiniuService {
     public static final String BUCKET_NAME= "nian";
     public static final int TIME_OUT= 3600;
     public static final String SAVE_KEY= "saveKey";//用于更换存储图片名称
+    public static final String QINIU_DOMAIN = "7xkbp1.com1.z0.glb.clouddn.com";
+    public static final String PHONE_STYLE = "?imageView2/1/w/111/h/111/q/24";
+    public static final long   TIME_OUT = 3600*24;
 
-    public void uploadToQiniu(byte[] bytes, String imageId) {
+    public void uploadToQiniu(byte[] bytes, String qiniuImageName) {
         Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
-        String token = auth.uploadToken(BUCKET_NAME, null, TIME_OUT, new StringMap().put(SAVE_KEY, imageId));
+        String token = auth.uploadToken(BUCKET_NAME, null, TIME_OUT, new StringMap().put(SAVE_KEY, qiniuImageName));
         UploadManager uploadManager = new UploadManager();
         try {
             Response res = uploadManager.put(bytes, null, token);
@@ -54,15 +58,24 @@ public class QiniuService {
      }
 
     public List<ImageDTO> getSouSmallImagesList(Map paramMap) {
-        List<ImageDTO> smallImagesList= souDAO.getSouSmallImagesList(paramMap);
-        for(ImageDTO smallImage : smallImagesList){
-
+        List<ImageDTO> smallImagesList= null;
+        try {
+            smallImagesList = souDAO.getSouSmallImagesList(paramMap);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
+        if(smallImagesList!=null){
+            Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+            for(ImageDTO smallImage : smallImagesList){
+                String qiniuImegeName =  smallImage.getUserid()+"-"+smallImage.getSouvenirid()+"-"+smallImage.getId();
+                String qiniuImageUrl = "http://"+QINIU_DOMAIN+"/"+qiniuImegeName;
+                String qiniuSmallImageURL = auth.privateDownloadUrl(qiniuImageUrl+PHONE_STYLE,TIME_OUT);
+                String qiniuOrigImageURL = auth.privateDownloadUrl(qiniuImageUrl,TIME_OUT);
+                smallImage.setImagesmallurl(qiniuSmallImageURL);
+                smallImage.setImageorigurl(qiniuOrigImageURL);
+            }
+        }
+        return smallImagesList;
     }
 
-    public ImageDTO getSouOneBigImage(ImageDTO imageDTO) {
-
-
-    }
 }

@@ -1,5 +1,4 @@
 package com.faceooo.nian.service;
-
 import com.faceooo.nian.dao.SouDAO;
 import com.faceooo.nian.dao.UserDAO;
 import com.faceooo.nian.model.*;
@@ -12,8 +11,6 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-//import com.faceooo.nian.dao.UserDAO;
 
 /**
  * Created by yuanlin on 15/8/18.
@@ -178,9 +175,10 @@ public class SouvenirService {
     }
 
     public String createImages(String userid, String souid) {
-        String imageid= userid+"-"+souid+"-"+ SysUtils.getImageID();
+        String imageid= SysUtils.getImageID();
         ImageDTO imagedto= new ImageDTO();
         imagedto.setId(imageid);
+        imagedto.setUserid(userid);
         imagedto.setSouvenirid(souid);
         imagedto.setImagessort("0");//TODO 图片排序功能，后面需要优化
         imagedto.setTimerecord(SysUtils.getNowTimeStr());

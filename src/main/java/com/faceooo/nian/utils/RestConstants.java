@@ -24,6 +24,7 @@ public class RestConstants {
 	public static final String DELETE_SOU = "/deletesou";
     public static final String CREATE_SOU = "/createsou";
     public static final String SOU_LIST_TYPE = "/soulistbytype";
+    public static final String GET_IMAGE_URL = "/getimagelist";
 	
    //post param
 	public static final String USER_ID = "userid";
@@ -45,6 +46,7 @@ public class RestConstants {
 	public static final String SOUVENIR_HIGHS = "highs";
 	public static final String SOUVENIR_WEIGTHS = "weights";
 	public static final String SOUVENIR_DYNASTYCODE = "dynastycode";
-	
+
+
 
 }

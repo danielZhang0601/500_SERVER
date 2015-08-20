@@ -52,5 +52,5 @@ public interface SouDAO {
 
     public List<SouvenirtypeDTO> queryUserSouListForHome(UserinfoDTO userinfo)throws SQLException;
 
-
+    public List<ImageDTO> getSouSmallImagesList(Map paramMap) throws SQLException;
 }
