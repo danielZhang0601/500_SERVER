@@ -1,0 +1,6 @@
+<config description="自动配置">
+    <script>
+        <generate template="web.xml.vm" destfile="WEB-INF/web.xml" charset="UTF-8"/>
+        <generate template="db.properties.vm" destfile="WEB-INF/db.properties" charset="UTF-8"/>
+    </script>
+</config>

@@ -1,0 +1,63 @@
+模块一：用户藏品管理
+	所有功能隐形传输userid userphone userpwd
+	1、home页
+	  -删除器物操作：长按器物图片，点击确定删除
+	  -修改器物分类：长按器物分类图标，修改后点击修改
+	  -删除器物分类：长按器物分类，选择删除按钮
+	  -点击新增器物类别：弹出输入框，输入类别，点击确认
+	  -用户对器物更换分类功能：拖动器物到分类列表上方
+	  -URL：/usersouhome?userid=18675520826&userphone=18675520826
+	  -URL：?action=deletesou            post:souid=
+	  -URL：?action=deletesoutype     post:soutypeid=     
+	  -URL：?action=updatesoutype    post:soutypeid=&soutypename=     
+	  -URL：?action=createsoutype     post:soutypename=瓷器
+	  -URL：?action=sousearch           post：soucode=A11 或soucode=器物名称
+	  -URL：?action=souchargetype    post：souid= &soutypeid=   系统增加判断若soutypeid为当前类型则不需要更换，更换分类，牵扯到物品排序问题
+	  -URL：?action=soulistbytype    post：soutypeid=
+
+	  -显示内容：用户物品分类列表，每个分类的藏品数量
+	  		            默认的第一个分类的藏品列表，按照年代进行排序，统计每个年代的藏品数量
+	  -搜索显示内容：若只搜索到一件物品则定位其分类和器物在页面上的位置。若多个器物则列出所有器物。
+	  		  
+    2、新增器物功能-用户上传图片，填写评论，选择年代，
+      -URL：?action=createsou    post：userid=  创建物品基础信息---点击新增藏品按钮调用传 userid
+      -URL：?action=createimage  新增图片
+      -URL：?action=updatesoupro 更新器物属性 -长、宽、高、重量、年代
+      -URL：?action=createrecord 新增用户评论
+      -post传输：图片数据流，藏品的长、宽、高、重量，年代选择，评论内容。
+      -显示内容：用户新增图片功能，支持选择多个图片。长、宽、高、重量、年代等选项。评论内容填写。
+	  		  
+ 	3、器物详情页-用户展示器物图片，时间轴，年代，长、宽、高、重量，评论
+	  -URL：?action=souinfo  post： souvenirid=
+	  -操作方式：用户进入器物详情页面
+	  -图片删除方式：长按图片选择删除
+	  -删除评论信息方式：左边滑动删除操作
+	  -URL：?action=deleteimages   post:    imageid= //删除图片功能，从图片表把记录删除，在建个删除图片的表批量的从七牛删除
+	  -URL：?action=deleterecord    post：  recordid=
+	  -URL：?action=updaterecord   post：  recordid=&recordcontent=
+	  -post传输：图片数据流、新增评论信息、修改的年代、长、宽、高、重量      
+	  -显示内容：用户展示器物图片，时间轴，年代，长宽高重量，评论
+	  
+	4、共享微信功能
+	-URL：?action=shareweixin  post:  souvenirid=
+	显示内容：用户展示器物图片，时间轴，年代，长宽高重量，评论
+	
+	
+	5、用户登陆和注册功能
+	-URL：?action=userreg  post：userphone=&userpwd=&useremail=&userequ1=
+	-URL：?action=userlogin  post：userphone=&userpwd=
+	显示内容：用户注册输入框，电话、密码、email、邮箱。点击注册按钮
+					用户电话和密码输入框 ，点击登陆功能。
+	
+	
+	
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
