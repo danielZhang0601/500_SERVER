@@ -1,5 +1,13 @@
 package com.faceooo.nian.model;
 
+
+/**
+ *
+ * @author yuanlin(e_boom@qq.com)
+ * @date 2015/8/21
+ * @since v1.0
+ * @deiscripe:0就是未分类
+ */
 public class SouvenirtypeDTO extends BaseDTO {
 	public String id;
 	public String userid;

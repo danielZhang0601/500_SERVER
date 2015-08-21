@@ -30,7 +30,7 @@ public interface SouDAO {
 
     public void chargeSoutype(SouvenirDTO soudto)throws SQLException;
 
-    public void updateSouBaseInfo(SouvenirDTO soudto)throws SQLException;
+    public boolean updateSouBaseInfo(SouvenirDTO soudto)throws SQLException;
 
     public void createSouRecord(RecordinfoDTO recorddto)throws SQLException;
 
@@ -42,7 +42,7 @@ public interface SouDAO {
 
     public void createSouImage(ImageDTO imagedto)throws SQLException;
 
-    public void createSouvenir(SouvenirDTO soudto)throws SQLException;
+    public boolean createSouvenir(SouvenirDTO soudto)throws SQLException;
 
     public void deleteImage(String imageId)throws SQLException;
 

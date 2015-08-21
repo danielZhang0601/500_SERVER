@@ -3,7 +3,7 @@ package com.faceooo.nian.model;
 public class SouvenirDTO extends BaseDTO{
 	public String id;
 	public String name;
-	public String souvenirtypeid;
+	public String souvenirtypeid;//0就是未分类
 	public String souvenirtypecode;//分类中的序号,由页面自动生成，不在后台存储
 	public String userid;
 	public String dynastycode;

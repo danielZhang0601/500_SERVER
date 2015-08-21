@@ -48,5 +48,4 @@ public class RestConstants {
 	public static final String SOUVENIR_DYNASTYCODE = "dynastycode";
 
 
-
 }

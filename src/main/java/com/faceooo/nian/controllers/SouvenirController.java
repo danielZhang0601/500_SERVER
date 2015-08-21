@@ -101,8 +101,22 @@ public class SouvenirController {
     }
 
     @RequestMapping (value = RestConstants.UPDATE_SOUBASEINFO)
-    public void  updateSouBaseInfo(SouvenirDTO soudto){
-        souvenirService.updateSouBaseInfo(soudto);
+    @ResponseBody
+    public JSONObject  updateSouBaseInfo(SouvenirDTO soudto){
+        JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
+        if(souvenirService.updateSouBaseInfo(soudto)){
+            error = "false";
+            result=soudto.getDtoToJson();
+        }else{
+            error = "true";
+            result.put("msg","更新信息失败！");
+        }
+
+        returnJson.put("error",error);
+        returnJson.put("result", result);
+        return returnJson;
     }
 
     @RequestMapping(value = RestConstants.CREATE_RECORD)
@@ -146,7 +160,15 @@ public class SouvenirController {
         JSONObject result = new JSONObject();
         SouvenirDTO soudto = new SouvenirDTO();
         soudto.setUserid(userid);
-        souvenirService.createSouvenir(soudto);
+
+        if(souvenirService.createSouvenir(soudto)){
+            error="false";
+            result=soudto.getDtoToJson();
+        }else{
+            error="true";
+            result.put("msg","新增物品失败！");
+        }
+
         returnJson.put("error",error);
         returnJson.put("result",result);
         return returnJson;

@@ -112,12 +112,13 @@ public class SouvenirService {
         }
     }
 
-    public void updateSouBaseInfo(SouvenirDTO soudto) {
+    public boolean updateSouBaseInfo(SouvenirDTO soudto) {
         try {
-            souDAO.updateSouBaseInfo(soudto);
+            return souDAO.updateSouBaseInfo(soudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public void createSouRecord(RecordinfoDTO recorddto) {
@@ -199,15 +200,15 @@ public class SouvenirService {
         return imageid;
     }
 
-    public void createSouvenir(SouvenirDTO soudto) {
+    public boolean createSouvenir(SouvenirDTO soudto) {
         try {
             soudto.setId(SysUtils.getSouvenirID());
             soudto.setTimerecord(SysUtils.getNowTimeStr());
-            souDAO.createSouvenir(soudto);
+            return souDAO.createSouvenir(soudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+            return false;
     }
 
     public void deleteImage(String imageId) {

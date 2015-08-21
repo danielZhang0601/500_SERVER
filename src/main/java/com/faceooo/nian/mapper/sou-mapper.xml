@@ -15,8 +15,9 @@
 	<select id="queryUserSouListForHome" resultType="SouvenirDTO"
 			parameterType="UserinfoDTO">
 		select sou.* from souvenir sou , souvenirtype sout
-		where sout.typesort='1' and sou.souvenirtypeid=sout.id and
-		sout.userid = #{id} limit 10
+		where  sou.userid = #{id}
+		and sout.typesort='0'
+		and sou.souvenirtypeid=sout.id  limit 10
 	</select>
 
 	<select id="querySouListForSearch" resultType="SouvenirDTO"

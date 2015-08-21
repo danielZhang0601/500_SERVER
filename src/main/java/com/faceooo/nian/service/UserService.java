@@ -45,7 +45,7 @@ public class UserService {
             for (SouvenirtypeDTO soudto : userSouList) {
                 souListjson.add(soudto.getDtoToJson());
             }
-            json.put("souList", soutypeListjson);
+            json.put("souList", souListjson);
 
         } catch (SQLException e) {
             e.printStackTrace();
