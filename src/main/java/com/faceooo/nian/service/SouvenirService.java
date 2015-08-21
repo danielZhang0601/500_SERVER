@@ -41,21 +41,30 @@ public class SouvenirService {
 
     }
 
-    public void updateSoutype(SouvenirtypeDTO soutypedto) {
+    public boolean updateSoutype(SouvenirtypeDTO soutypedto) {
         try {
-            souDAO.updateSoutype(soutypedto);
+           return souDAO.updateSoutype(soutypedto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void creatSouTypes(SouvenirtypeDTO soutypedto) {
+    public SouvenirtypeDTO creatSouTypes(SouvenirtypeDTO soutypedto) {
         try {
-            souDAO.creatSouTypes(soutypedto);
+            SouvenirtypeDTO souIsExist=souDAO.querySouTyepInfo(soutypedto);
+            if(souIsExist==null){
+                soutypedto.setId(SysUtils.getsoutypeid());
+                soutypedto.setTypecount("0");
+                soutypedto.setTimerecord(SysUtils.getNowTimeStr());
+                souDAO.creatSouTypes(soutypedto);
+            }else{
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return null;
     }
 
     public JSONObject getSouvenirSearch(Map<String, String> paramMap) {// 两种搜索方式取其一

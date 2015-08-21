@@ -9,8 +9,8 @@
 	  -URL：/usersouhome?userid=U1440139979366&userphone=18675520826
 	  -URL：?action=deletesou            post:souid=
 	  -URL：?action=deletesoutype     post:soutypeid=     
-	  -URL：?action=updatesoutype    post:soutypeid=&soutypename=     
-	  -URL：?action=createsoutype     post:soutypename=瓷器
+	  -URL：/updatesoutype?id=ST1440144370686&typename=玉器
+	  -URL：/createsoutype?soutypename=瓷器&userid=U1440139979366
 	  -URL：?action=sousearch           post：soucode=A11 或soucode=器物名称
 	  -URL：?action=souchargetype    post：souid= &soutypeid=   系统增加判断若soutypeid为当前类型则不需要更换，更换分类，牵扯到物品排序问题
 	  -URL：?action=soulistbytype    post：soutypeid=

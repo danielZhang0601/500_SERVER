@@ -18,7 +18,7 @@ public interface SouDAO {
 
     public void deleteSoutype(String soutypeid)throws SQLException;
 
-    public void updateSoutype(SouvenirtypeDTO soutypedto)throws SQLException;
+    public boolean updateSoutype(SouvenirtypeDTO soutypedto)throws SQLException;
 
     public void creatSouTypes(SouvenirtypeDTO soutypedto)throws SQLException;
 
@@ -53,4 +53,6 @@ public interface SouDAO {
     public List<SouvenirtypeDTO> queryUserSouListForHome(UserinfoDTO userinfo)throws SQLException;
 
     public List<ImageDTO> getSouSmallImagesList(Map paramMap) throws SQLException;
+
+    public SouvenirtypeDTO querySouTyepInfo(SouvenirtypeDTO soutypedto)throws SQLException;
 }

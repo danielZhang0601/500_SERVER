@@ -54,6 +54,12 @@
         SELECT * FROM image WHERE souvenirid = #{souid} AND userid = #{userid}
     </select>
 
+    <select id="querySouTyepInfo" resultType="SouvenirtypeDTO" parameterType="SouvenirtypeDTO">
+        SELECT * FROM souvenirtype WHERE typename = #{typename} AND userid = #{userid}
+    </select>
+
+
+
 	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
 	<!--#{#{#{ DELETE ZONE       #{#{#{-->
 	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
@@ -109,10 +115,7 @@
 		insert into
 		souvenirtype (id,userid,typesort,typename,typecount,timerecord)
 		values
-		(#{id#{,#{userid#{,#{typesort#{,#{typename#{,#{typecount#{,#{timerecord#{)\
-		<selectKey resultType="String" keyProperty="typesort">
-			select count(*)+1 from souvenirtype where userid=#{userid#{
-		</selectKey>
+		(#{id},#{userid},#{typesort},#{typename},#{typecount},#{timerecord})
 	</insert>
 
 	<insert id="createSouRecord" parameterType="RecordinfoDTO">

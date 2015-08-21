@@ -6,9 +6,11 @@ import com.faceooo.nian.model.SouvenirtypeDTO;
 import com.faceooo.nian.service.SouvenirService;
 import com.faceooo.nian.utils.RestConstants;
 import com.faceooo.nian.utils.SysUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -37,22 +39,44 @@ public class SouvenirController {
     }
 
     @RequestMapping(value = RestConstants.UPDATE_SOUTYPE)
-    public void updateSoutype(String soutypeid,String soutypename) {
-        SouvenirtypeDTO soutypedto= new SouvenirtypeDTO();
-        soutypedto.setId(soutypeid);
-        soutypedto.setTypename(soutypename);
-        souvenirService.updateSoutype(soutypedto);
+    @ResponseBody
+    public JSONObject updateSoutype(SouvenirtypeDTO soutypedto) {
+        JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
+
+        if(souvenirService.updateSoutype(soutypedto)){
+            error="false";
+        }else{
+            error="true";
+        }
+        result=soutypedto.getDtoToJson();
+
+        returnJson.put("error",error);
+        returnJson.put("result",result);
+        return returnJson;
     }
 
     @RequestMapping(value = RestConstants.CREATE_SOUTYPE)
-    public void creatSouTypes(String soutypename,String userid) {
+    @ResponseBody
+    public JSONObject creatSouTypes(String soutypename,String userid) {
+        JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
         SouvenirtypeDTO soutypedto = new SouvenirtypeDTO();
-        soutypedto.setId(SysUtils.getsoutypeid());
         soutypedto.setUserid(userid);
         soutypedto.setTypename(soutypename);
-        soutypedto.setTypecount("0");
-        soutypedto.setTimerecord(SysUtils.getNowTimeStr());
         souvenirService.creatSouTypes(soutypedto);
+        if(soutypedto.getId()!=null){
+            error="false";
+            result=soutypedto.getDtoToJson();
+        }else{
+            error="true";
+            result.put("msg","物品分类已经存在！");
+        }
+        returnJson.put("error",error);
+        returnJson.put("result",result);
+        return returnJson;
     }
 
     @RequestMapping(value = RestConstants.SOU_SEARCH)
@@ -115,10 +139,17 @@ public class SouvenirController {
     }
 
     @RequestMapping(value = RestConstants.CREATE_SOU)
-    public void createSou(String userid){
+    @ResponseBody
+    public JSONObject createSou(String userid){
+        JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
         SouvenirDTO soudto = new SouvenirDTO();
         soudto.setUserid(userid);
         souvenirService.createSouvenir(soudto);
+        returnJson.put("error",error);
+        returnJson.put("result",result);
+        return returnJson;
     }
 
     @RequestMapping(value = RestConstants.DELETE_IMAGES)
