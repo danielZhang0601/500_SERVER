@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!-- Java类的别名设置，在mapper中使用 -->
+    <typeAliases>
+        <typeAlias alias="ClearQiniuDTO" type="com.faceooo.nian.model.ClearQiniuDTO"/>
+        <typeAlias alias="DemoDTO" type="com.faceooo.nian.model.DemoDTO"/>
+        <typeAlias alias="ImageDTO" type="com.faceooo.nian.model.ImageDTO"/>
+        <typeAlias alias="OwnDTO" type="com.faceooo.nian.model.OwnDTO"/>
+        <typeAlias alias="RecordinfoDTO" type="com.faceooo.nian.model.RecordinfoDTO"/>
+        <typeAlias alias="SouvenirDTO" type="com.faceooo.nian.model.SouvenirDTO"/>
+        <typeAlias alias="SouvenirtypeDTO" type="com.faceooo.nian.model.SouvenirtypeDTO"/>
+        <typeAlias alias="TimeriverDTO" type="com.faceooo.nian.model.TimeriverDTO"/>
+        <typeAlias alias="UserinfoDTO" type="com.faceooo.nian.model.UserinfoDTO"/>
+    </typeAliases>
+<!--
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis" />
+                <property name="username" value="root"/>
+                <property name="password" value="password"/>
+            </dataSource>
+        </environment>
+    </environments>
+-->
+
+    <!--
+    <mappers>
+        <mapper resource="com/faceooo/nian/mapper/demo-mapper.xml"/>
+    </mappers>
+    -->
+</configuration>

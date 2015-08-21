@@ -50,6 +50,10 @@
 		select * from souvenir where userid = #{userid} AND  souvenirtypeid = #{souvenirtypeid} order by dynastycode LIMIT 20
 	</select>
 
+    <select id="getSouSmallImagesList" resultType="ImageDTO" parameterType="java.util.Map">
+        SELECT * FROM image WHERE souvenirid = #{souid} AND userid = #{userid}
+    </select>
+
 	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
 	<!--#{#{#{ DELETE ZONE       #{#{#{-->
 	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
