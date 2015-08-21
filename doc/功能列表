@@ -6,7 +6,7 @@
 	  -删除器物分类：长按器物分类，选择删除按钮
 	  -点击新增器物类别：弹出输入框，输入类别，点击确认
 	  -用户对器物更换分类功能：拖动器物到分类列表上方
-	  -URL：/usersouhome?userid=18675520826&userphone=18675520826
+	  -URL：/usersouhome?userid=U1440139979366&userphone=18675520826
 	  -URL：?action=deletesou            post:souid=
 	  -URL：?action=deletesoutype     post:soutypeid=     
 	  -URL：?action=updatesoutype    post:soutypeid=&soutypename=     
@@ -44,8 +44,8 @@
 	
 	
 	5、用户登陆和注册功能
-	-URL：?action=userreg  post：userphone=&userpwd=&useremail=&userequ1=
-	-URL：?action=userlogin  post：userphone=&userpwd=
+	-URL：/userreg?userphone=18682278869&userpwd=278869&useremail=&userequ1=
+	-URL：/userlogin?userphone=18682278869&userpwd=278869
 	显示内容：用户注册输入框，电话、密码、email、邮箱。点击注册按钮
 					用户电话和密码输入框 ，点击登陆功能。
 	

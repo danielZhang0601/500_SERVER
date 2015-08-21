@@ -33,23 +33,34 @@ public class UserController {
     }
 
     @RequestMapping(value = RestConstants.USER_REG)
-    public ModelAndView getUserReg(UserinfoDTO userinfo) {
-        ModelAndView mav = new ModelAndView();
-        userService.insertUserinfo(userinfo);
-        mav.addObject("userHomeJson", userinfo.getDtoToJson());
-        return mav;
+    @ResponseBody
+    public JSONObject getUserReg(UserinfoDTO userinfo) {
+        String msg = userService.insertUserinfo(userinfo);
+        if(msg==null){
+            return userinfo.getDtoToJson();
+        }else{
+            JSONObject msgJsp = new JSONObject();
+            msgJsp.put("mag",msg);
+            return msgJsp;
+        }
+
     }
 
 
     @RequestMapping(value = RestConstants.USER_LOGIN)
-    public ModelAndView userLogin(String userphone,String userpwd) {
-        ModelAndView mav = new ModelAndView();
+    @ResponseBody
+    public JSONObject userLogin(String userphone,String userpwd) {
         UserinfoDTO userinfo= new UserinfoDTO();
         userinfo.setUserpwd(userpwd);
         userinfo.setUserphone(userphone);
         userinfo= userService.userLogin(userinfo);
-        mav.addObject("userLoginInfoJson",userinfo.getDtoToJson());
-        return mav;
+        if(userinfo!=null){
+            return userinfo.getDtoToJson();
+        }else{
+            JSONObject msgJsp = new JSONObject();
+            msgJsp.put("mag","该用户还未注册！");
+            return msgJsp;
+        }
     }
 
 

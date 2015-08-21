@@ -26,9 +26,9 @@
 
 	<insert id="insertUserinfo" parameterType="UserinfoDTO">
 		insert into
-		userinfo(id,username,userequ1,userequ2,userphone,usernick,usercard,userstatus,istrue,timerecord)
+		userinfo(id,username,userpwd,userequ1,userequ2,userphone,usernick,usercard,userstatus,istrue,timerecord)
 		values
-		(#{id},#{userphone},#{userequ1},#{userequ2},#{userphone},#{usernick},#{usercard},#{userstatus},#{istrue},#{timerecord})
+		(#{id},#{username},#{userpwd},#{userequ1},#{userequ2},#{userphone},#{usernick},#{usercard},#{userstatus},#{istrue},#{timerecord})
 	</insert>
 
 

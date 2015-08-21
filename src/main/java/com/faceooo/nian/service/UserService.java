@@ -4,6 +4,7 @@ import com.faceooo.nian.dao.SouDAO;
 import com.faceooo.nian.dao.UserDAO;
 import com.faceooo.nian.model.SouvenirtypeDTO;
 import com.faceooo.nian.model.UserinfoDTO;
+import com.faceooo.nian.utils.SysUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,22 +54,38 @@ public class UserService {
         return json;
     }
 
-    public void insertUserinfo(UserinfoDTO userinfo) {
+    public String insertUserinfo(UserinfoDTO userinfo) {
 
         try {
-            userDAO.insertUserinfo(userinfo);
+            userinfo.setId(SysUtils.getuserid());
+            userinfo.setTimerecord(SysUtils.getNowTimeStr());
+            if(userinfo.getUsername()==null){
+                userinfo.setUsername(userinfo.getUserphone());
+            }
+            List<UserinfoDTO> userinfoList= userDAO.queryUserLogin(userinfo);
+            if(userinfoList!=null&&userinfoList.size()>0){
+                return "该手机号码已经注册，请登录！";
+            }else{
+                userDAO.insertUserinfo(userinfo);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+            return null;
     }
 
     public UserinfoDTO userLogin(UserinfoDTO userinfo) {
         try {
-            return  userDAO.queryUserLogin(userinfo);
+            List<UserinfoDTO> userinfoList=  userDAO.queryUserLogin(userinfo);
+            if(userinfoList!=null&&userinfoList.size()==1){
+                return userinfoList.get(0);
+            }else{
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return userinfo;
+        return null;
     }
 }
