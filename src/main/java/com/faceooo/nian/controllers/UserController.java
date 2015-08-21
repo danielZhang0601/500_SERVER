@@ -25,42 +25,55 @@ public class UserController {
     @RequestMapping(value = RestConstants.USER_HOME)
     @ResponseBody
     public JSONObject userhome(String userid,String userphone) {
-        //ModelAndView mav = new ModelAndView();
+        JSONObject returnJson = new JSONObject();
         UserinfoDTO userinfo= new UserinfoDTO();
         userinfo.setId(userid);
         userinfo.setUserphone(userphone);
-        return  userService.getUserHomeInfo(userinfo);
+        JSONObject userhomeJson =userService.getUserHomeInfo(userinfo);
+
+        return returnJson;
     }
 
     @RequestMapping(value = RestConstants.USER_REG)
     @ResponseBody
     public JSONObject getUserReg(UserinfoDTO userinfo) {
+        JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
         String msg = userService.insertUserinfo(userinfo);
         if(msg==null){
-            return userinfo.getDtoToJson();
+            error= "false";
+            returnJson.put("result",userinfo.getDtoToJson());
         }else{
-            JSONObject msgJsp = new JSONObject();
-            msgJsp.put("mag",msg);
-            return msgJsp;
+            result.put("msg",msg);
+            error= "true";
         }
-
+        returnJson.put("error",error);
+        returnJson.put("result",result);
+        return returnJson;
     }
 
 
     @RequestMapping(value = RestConstants.USER_LOGIN)
     @ResponseBody
     public JSONObject userLogin(String userphone,String userpwd) {
+        JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
         UserinfoDTO userinfo= new UserinfoDTO();
         userinfo.setUserpwd(userpwd);
         userinfo.setUserphone(userphone);
         userinfo= userService.userLogin(userinfo);
         if(userinfo!=null){
-            return userinfo.getDtoToJson();
+            error= "false";
+            result=userinfo.getDtoToJson();
         }else{
-            JSONObject msgJsp = new JSONObject();
-            msgJsp.put("mag","该用户还未注册！");
-            return msgJsp;
+            result.put("msg","该用户还未注册！");
+            error= "true";
         }
+        returnJson.put("error",error);
+        returnJson.put("result",result);
+        return returnJson;
     }
 
 
