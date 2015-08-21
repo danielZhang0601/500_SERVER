@@ -26,11 +26,23 @@ public class UserController {
     @ResponseBody
     public JSONObject userhome(String userid,String userphone) {
         JSONObject returnJson = new JSONObject();
+        String error= "";
+        JSONObject result = new JSONObject();
+
         UserinfoDTO userinfo= new UserinfoDTO();
         userinfo.setId(userid);
         userinfo.setUserphone(userphone);
-        JSONObject userhomeJson =userService.getUserHomeInfo(userinfo);
 
+        if(userService.checkUserIsExists(userinfo)){
+            error="true";
+            result.put("msg","用户不存在！");
+        }else{
+            result =userService.getUserHomeInfo(userinfo);
+            error="false";
+        }
+
+        returnJson.put("error",error);
+        returnJson.put("result",result);
         return returnJson;
     }
 
@@ -43,7 +55,7 @@ public class UserController {
         String msg = userService.insertUserinfo(userinfo);
         if(msg==null){
             error= "false";
-            returnJson.put("result",userinfo.getDtoToJson());
+            returnJson=userinfo.getDtoToJson();
         }else{
             result.put("msg",msg);
             error= "true";

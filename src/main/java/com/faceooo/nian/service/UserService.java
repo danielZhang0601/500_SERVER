@@ -88,4 +88,20 @@ public class UserService {
         }
         return null;
     }
+
+    public boolean checkUserIsExists(UserinfoDTO userinfo) {
+        UserinfoDTO userinfoList=null;
+        try {
+            userinfoList=  userDAO.queryUserInfoForID(userinfo.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(userinfoList==null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }
