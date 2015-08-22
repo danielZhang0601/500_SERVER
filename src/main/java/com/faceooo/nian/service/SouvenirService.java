@@ -24,21 +24,22 @@ public class SouvenirService {
     @Autowired
     UserDAO userDAO;
 
-    public void deleteSou(String souvenirid) {
+    public boolean deleteSou(String souvenirid) {
         try {
-            souDAO.deleteSou(souvenirid);
+            return souDAO.deleteSou(souvenirid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void deleteSoutype(String soutypeid) {
+    public boolean deleteSoutype(String soutypeid) {
         try {
-            souDAO.deleteSoutype(soutypeid);
+            return souDAO.deleteSoutype(soutypeid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+            return false;
     }
 
     public boolean updateSoutype(SouvenirtypeDTO soutypedto) {
@@ -104,12 +105,13 @@ public class SouvenirService {
 
     }
 
-    public void chargeSoutype(SouvenirDTO soudto) {
+    public boolean chargeSoutype(SouvenirDTO soudto) {
         try {
-            souDAO.chargeSoutype(soudto);
+           return souDAO.chargeSoutype(soudto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public boolean updateSouBaseInfo(SouvenirDTO soudto) {
@@ -121,67 +123,80 @@ public class SouvenirService {
         return false;
     }
 
-    public void createSouRecord(RecordinfoDTO recorddto) {
+    public boolean createSouRecord(RecordinfoDTO recorddto) {
         try {
-            souDAO.createSouRecord(recorddto);
+            recorddto.setId(SysUtils.getrecordid());
+            recorddto.setTimerecord(SysUtils.getNowTimeStr());
+            return souDAO.createSouRecord(recorddto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+            return false;
     }
 
     public JSONObject getSouvenirInfo(String souvenirid) {
-        JSONObject souvenirInfoJSON = new JSONObject();
+
         try {
-            // 获取用户图片信息
-            List<ImageDTO> souImagesList = souDAO
-                    .querySouImagesCode(souvenirid);
-            JSONArray souImagesListJson = new JSONArray();
-            for (ImageDTO image : souImagesList) {
-                souImagesListJson.add(image.getDtoToJson());
-            }
-            souvenirInfoJSON.put("souImagesList", souImagesListJson);
+//            // 获取用户图片信息
+//            List<ImageDTO> souImagesList = souDAO
+//                    .querySouImagesCode(souvenirid);
+//            JSONArray souImagesListJson = new JSONArray();
+//            for (ImageDTO image : souImagesList) {
+//                souImagesListJson.add(image.getDtoToJson());
+//            }
+//            souvenirInfoJSON.put("souImagesList", souImagesListJson);
 
-            // 获取用户时间轴信息 获取用户信息列表（用户id，用户名，用户头像图片）
-            List<UserinfoDTO> timelineUsers = userDAO
-                    .queryTimelineUsers(souvenirid);
-            JSONArray soutimeline = new JSONArray();
-            for (UserinfoDTO userdto : timelineUsers) {
-                soutimeline.add(userdto.getDtoToJson());
-            }
-            souvenirInfoJSON.put("soutimeline", soutimeline);
-
-            // 获取用户评论信息
-            List<String> soureviewList = userDAO.querySoureviewList(souvenirid);
-            JSONArray userreview = new JSONArray();
-            userreview.add(soureviewList);
-            souvenirInfoJSON.put("userreviews", userreview);
+//            // 获取用户时间轴信息 获取用户信息列表（用户id，用户名，用户头像图片）
+//            List<UserinfoDTO> timelineUsers = userDAO
+//                    .queryTimelineUsers(souvenirid);
+//            JSONArray soutimeline = new JSONArray();
+//            for (UserinfoDTO userdto : timelineUsers) {
+//                soutimeline.add(userdto.getDtoToJson());
+//            }
+//            souvenirInfoJSON.put("soutimeline", soutimeline);
 
             //获取藏品的基础信息
             SouvenirDTO soudto = souDAO.querySouInfoForID(souvenirid);
-            souvenirInfoJSON.put("soubaseinfo", soudto.getDtoToJson());
+            if(soudto==null){
+                return null;
+            }else{
+                JSONObject souvenirInfoJSON = new JSONObject();
+                souvenirInfoJSON.put("soubaseinfo", soudto.getDtoToJson());
+
+                // 获取用户评论信息
+                List<RecordinfoDTO> sourecordList = userDAO.querySoureviewList(souvenirid);
+                JSONArray userreview = new JSONArray();
+                for(RecordinfoDTO  recordinfoDTO :sourecordList){
+                    userreview.add(recordinfoDTO.getDtoToJson());
+                }
+
+                souvenirInfoJSON.put("userrecords", userreview);
+                return souvenirInfoJSON;
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return souvenirInfoJSON;
+        return null;
     }
 
-    public void deleteSouRecord(RecordinfoDTO recorddto) {
+    public boolean deleteSouRecord(String recordid) {
         try {
-            souDAO.deleteSouRecord(recorddto);
+            return souDAO.deleteSouRecord(recordid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void updateSouRecord(RecordinfoDTO recorddto) {
+    public boolean updateSouRecord(RecordinfoDTO recorddto) {
         try {
-            souDAO.updateSouRecord(recorddto);
+            return souDAO.updateSouRecord(recorddto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+            return false;
     }
 
     public String createImages(String userid, String souid) {
@@ -203,8 +218,10 @@ public class SouvenirService {
     public boolean createSouvenir(SouvenirDTO soudto) {
         try {
             soudto.setId(SysUtils.getSouvenirID());
+            soudto.setSouvenirtypeid("0");//0为未分类
             soudto.setTimerecord(SysUtils.getNowTimeStr());
             return souDAO.createSouvenir(soudto);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -224,17 +241,18 @@ public class SouvenirService {
         }
     }
 
+    //souvenirtypeid=0未分类
     public JSONArray getSouvenirListForType(SouvenirDTO souvenirDTO) {
         JSONArray souListjson = null;
-        List<SouvenirDTO> souListForName = null;
+        List<SouvenirDTO> souList = null;
         try {
-            souListForName = souDAO.getSouvenirListForType(souvenirDTO);
+            souList = souDAO.getSouvenirListForType(souvenirDTO);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (souListForName!=null){
+        if (souList!=null){
             souListjson=new JSONArray();
-            for (SouvenirDTO soudto : souListForName) {
+            for (SouvenirDTO soudto : souList) {
                 souListjson.add(soudto.getDtoToJson());
             }
         }

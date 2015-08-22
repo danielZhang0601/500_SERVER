@@ -1,5 +1,6 @@
 package com.faceooo.nian.dao;
 
+import com.faceooo.nian.model.RecordinfoDTO;
 import com.faceooo.nian.model.SouvenirtypeDTO;
 import com.faceooo.nian.model.UserinfoDTO;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ public interface UserDAO {
 
     List<UserinfoDTO> queryTimelineUsers(String souvenirid)throws SQLException;
 
-    List<String> querySoureviewList(String souvenirid)throws SQLException;
+    List<RecordinfoDTO> querySoureviewList(String souvenirid)throws SQLException;
 
     List<SouvenirtypeDTO> queryUserSouTypeList(UserinfoDTO userinfo)throws SQLException;
 

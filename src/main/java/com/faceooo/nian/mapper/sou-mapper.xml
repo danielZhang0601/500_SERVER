@@ -22,28 +22,19 @@
 
 	<select id="querySouListForSearch" resultType="SouvenirDTO"
 			parameterType="java.util.HashMap">
-		select sou.* from souvenir sou, own oo where
+		select sou.* from souvenir sou where
 		sou.souvenirtypecode = #{souvenircode}
-		and oo.souvenirid = sou.id and
-		oo.userid= #{userid}
+		and sou.userid= #{userid}
 	</select>
 
 	<select id="querySouListForSearchName" resultType="SouvenirDTO"
 			parameterType="java.util.HashMap">
-		select sou.* from souvenir sou, own oo where sou.name
+		select sou.* from souvenir sou  where sou.name
 		like '%'|| #{souvenircode} ||'%'
-		and oo.souvenirid = sou.id and
-		oo.userid = #{userid}
+		and sou.userid = #{userid}
 	</select>
 
-	<select id="querySoureviewList" resultType="String"
-			parameterType="String">
-		select content from recordinfo where souvenirid = #{value}
-	</select>
-
-
-	<select id="querySouInfoForID" resultType="SouvenirDTO"
-			parameterType="String">
+	<select id="querySouInfoForID" resultType="SouvenirDTO" parameterType="String">
 		select * from souvenir where id = #{value}
 	</select>
 
@@ -73,8 +64,8 @@
 		delete from souvenirtype where id = #{value}
 	</delete>
 
-	<delete id="deleteSouRecord" parameterType="RecordinfoDTO">
-		delete from recordinfo where id = #{id}
+	<delete id="deleteSouRecord" parameterType="String">
+		delete from recordinfo where id = #{value}
 	</delete>
 
 	<delete id="deleteImage" parameterType="String">
@@ -128,9 +119,9 @@
 
 	<insert id="createSouvenir" parameterType="SouvenirDTO">
 		insert into
-		souvenir (id,userid,timerecord)
+		souvenir (id,userid,timerecord,souvenirtypeid)
 		values
-		(#{id},#{userid},#{timerecord})
+		(#{id},#{userid},#{timerecord},#{souvenirtypeid})
 	</insert>
 
 	<insert id="createSouImage" parameterType="ImageDTO">

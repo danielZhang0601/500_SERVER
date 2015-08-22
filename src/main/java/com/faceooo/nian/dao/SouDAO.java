@@ -14,9 +14,9 @@ import java.util.Map;
 @Repository("souDAO")
 public interface SouDAO {
 
-    public void deleteSou(String souvenirid) throws SQLException;
+    public boolean deleteSou(String souvenirid) throws SQLException;
 
-    public void deleteSoutype(String soutypeid)throws SQLException;
+    public boolean deleteSoutype(String soutypeid)throws SQLException;
 
     public boolean updateSoutype(SouvenirtypeDTO soutypedto)throws SQLException;
 
@@ -28,17 +28,17 @@ public interface SouDAO {
 
     public SouvenirDTO querySouInfoForID(String id)throws SQLException;
 
-    public void chargeSoutype(SouvenirDTO soudto)throws SQLException;
+    public boolean chargeSoutype(SouvenirDTO soudto)throws SQLException;
 
     public boolean updateSouBaseInfo(SouvenirDTO soudto)throws SQLException;
 
-    public void createSouRecord(RecordinfoDTO recorddto)throws SQLException;
+    public boolean createSouRecord(RecordinfoDTO recorddto)throws SQLException;
 
     public List<ImageDTO> querySouImagesCode(String souvenirid)throws SQLException;
 
-    public void deleteSouRecord(RecordinfoDTO recorddto)throws SQLException;
+    public boolean deleteSouRecord(String recordid)throws SQLException;
 
-    public void updateSouRecord(RecordinfoDTO recorddto)throws SQLException;
+    public boolean updateSouRecord(RecordinfoDTO recorddto)throws SQLException;
 
     public void createSouImage(ImageDTO imagedto)throws SQLException;
 

@@ -19,6 +19,10 @@
 		select * from souvenirtype where userid = #{id}
 	</select>
 
+	<select id="querySoureviewList" resultType="RecordinfoDTO"  parameterType="String">
+		select * from recordinfo where souvenirid = #{value}
+	</select>
+
 
 	<select id="queryUserLogin" resultType="UserinfoDTO"  parameterType="UserinfoDTO">
 		select * from userinfo where userphone = #{userphone} AND  userpwd = #{userpwd}
