@@ -253,22 +253,25 @@ public class SouvenirService {
             return false;
     }
 
-    public void deleteImage( Map<String,String> paramMap) {
+    public boolean deleteImage( Map<String,String> paramMap) {
         try {
             String imageId =paramMap.get("imageId");
             String userid =paramMap.get("userid");
             String souid =paramMap.get("souid");
-            souDAO.deleteImage(imageId);
-            ClearQiniuDTO clearqiniudto = new ClearQiniuDTO();
-            clearqiniudto.setId(SysUtils.getClearQiniuID());
-            clearqiniudto.setImageid(imageId);
-            clearqiniudto.setSouvenirid(souid);
-            clearqiniudto.setUserid(userid);
-            clearqiniudto.setTimerecord(SysUtils.getNowTimeStr());
-            souDAO.createClearQiniu(clearqiniudto);
+            if(souDAO.deleteImage(imageId)){
+                ClearQiniuDTO clearqiniudto = new ClearQiniuDTO();
+                clearqiniudto.setId(SysUtils.getClearQiniuID());
+                clearqiniudto.setImageid(imageId);
+                clearqiniudto.setSouvenirid(souid);
+                clearqiniudto.setUserid(userid);
+                clearqiniudto.setTimerecord(SysUtils.getNowTimeStr());
+                return souDAO.createClearQiniu(clearqiniudto);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     //souvenirtypeid=0未分类

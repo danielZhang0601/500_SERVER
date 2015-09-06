@@ -44,9 +44,9 @@ public interface SouDAO {
 
     public boolean createSouvenir(SouvenirDTO soudto)throws SQLException;
 
-    public void deleteImage(String imageId)throws SQLException;
+    public boolean deleteImage(String imageId)throws SQLException;
 
-    public void createClearQiniu(ClearQiniuDTO clearqiniudto)throws SQLException;
+    public boolean createClearQiniu(ClearQiniuDTO clearqiniudto)throws SQLException;
 
     public List<SouvenirDTO> getSouvenirListForType(SouvenirDTO souvenirDTO)throws SQLException;
 

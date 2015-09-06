@@ -270,12 +270,26 @@ public class SouvenirController {
     }
 
     @RequestMapping(value = RestConstants.DELETE_IMAGES)
-    public void deleteImages(String imageId,String userid,String souid) {//在image表删除记录，在clearqiniu表增加记录
+    @ResponseBody
+    public JSONObject deleteImages(String imageId,String userid,String souid) {//在image表删除记录，在clearqiniu表增加记录
+        JSONObject returnJson = new JSONObject();
+        String error ="true";
+        JSONObject result = new JSONObject();
         Map<String,String> paramMap = new HashMap<>();
         paramMap.put("imageId",imageId);
         paramMap.put("userid",userid);
         paramMap.put("souid",souid);
-        souvenirService.deleteImage(paramMap);
+
+        if (souvenirService.deleteImage(paramMap)) {
+            error = "false";
+            result.put("msg", "删除成功！");
+        } else {
+            error = "true";
+            result.put("msg", "删除失败！");
+        }
+        returnJson.put("error", error);
+        returnJson.put("result", result);
+        return returnJson;
     }
 
     @RequestMapping(value = RestConstants.SOU_LIST_TYPE)

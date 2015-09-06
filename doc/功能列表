@@ -21,7 +21,7 @@
 	  		  
     2、新增器物功能-用户上传图片，填写评论，选择年代，
       -URL：/createsou?userid=  创建物品基础信息---点击新增藏品按钮调用传 userid
-      -URL：/action=createimage?userid=U1440139979366&souid=S1440165538460  新增图片
+      -URL：/createimage?userid=U1440139979366&souid=S1440165538460  新增图片
       -URL：/updatesoubaseinfo?id=S1440165552428&dynastycode=11&lengths=17&wides=13&highs=18&weights=1200 更新器物属性 -长、宽、高、重量、年代
       -URL：/createrecord?souvenirid=S1440165552428&content=testtesttesttesttest
       -post传输：图片数据流，藏品的长、宽、高、重量，年代选择，评论内容。
@@ -32,7 +32,7 @@
 	  -操作方式：用户进入器物详情页面
 	  -图片删除方式：长按图片选择删除
 	  -删除评论信息方式：左边滑动删除操作
-	  -URL：#/action=deleteimages?imageid=&souid=&userid= //删除图片功能，从图片表把记录删除，在建个删除图片的表批量的从七牛删除
+	  -URL：#/deleteimages?imageid=I1441529998291&souid=S1440165538460&userid=U1440139979366 //删除图片功能，从图片表把记录删除，在建个删除图片的表批量的从七牛删除
 	  -URL：/deleterecord?recordid=R1440265212997
 	  -URL：/updaterecord?id=R1440265212997&content=werwrwerwerwerwerwer
 	  -post传输：图片数据流、新增评论信息、修改的年代、长、宽、高、重量      
