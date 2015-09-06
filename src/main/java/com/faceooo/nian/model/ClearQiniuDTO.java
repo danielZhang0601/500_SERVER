@@ -2,8 +2,26 @@ package com.faceooo.nian.model;
 
 public class ClearQiniuDTO extends BaseDTO{
 	public String id;
+    public String souvenirid;
+    public String userid;
 	public String imageid;
-	public String timerecord;
+    public String timerecord;
+
+    public String getSouvenirid() {
+        return souvenirid;
+    }
+
+    public void setSouvenirid(String souvenirid) {
+        this.souvenirid = souvenirid;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 
     public String getId() {
         return id;

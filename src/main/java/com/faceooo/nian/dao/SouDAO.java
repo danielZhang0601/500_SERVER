@@ -55,4 +55,8 @@ public interface SouDAO {
     public List<ImageDTO> getSouSmallImagesList(Map paramMap) throws SQLException;
 
     public SouvenirtypeDTO querySouTyepInfo(SouvenirtypeDTO soutypedto)throws SQLException;
+
+    public boolean deleteImageForSouid(String souvenirid)throws SQLException;
+
+    public boolean deleteSouRecordForSouid(String souvenirid)throws SQLException;
 }

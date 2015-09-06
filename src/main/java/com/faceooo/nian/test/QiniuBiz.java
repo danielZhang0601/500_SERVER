@@ -1,70 +1,64 @@
 package com.faceooo.nian.test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.UploadManager;
-import com.qiniu.storage.model.BatchStatus;
-import com.qiniu.storage.model.FileInfo;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+import java.io.*;
 
 public class QiniuBiz {
 
-	public static void main(String args[]) {
+
+	public static void main(String args[]){
 		QiniuBiz qqBiz = new QiniuBiz();
 		qqBiz.uploadSouImages();
 	}
 
-	public static final String ACCESS_KEY = "eY5FxmhOnLWXx7BXbhnmIVYlpsF-U_GBAKUKdtTV";
-	public static final String SECRET_KEY = "Gx_nUEYTyzw0V8TO9ufK8HuvPmi3AnxvH5OnKDzm";
+	public static final String ACCESS_KEY="eY5FxmhOnLWXx7BXbhnmIVYlpsF-U_GBAKUKdtTV";
+	public static final String SECRET_KEY="Gx_nUEYTyzw0V8TO9ufK8HuvPmi3AnxvH5OnKDzm";
 
 	public void uploadSouImages() {
 		Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
-		String token = auth.uploadToken("nian", null, 3600,
-				new StringMap().put("saveKey", "11118409891212311.jpg"));
-		String filePath = "D://18409891212311.jpg";
-		byte[] buffer = getFilebyteArray(filePath);
-		String key = upload(buffer, null, token);
-		BucketManager bucketManager = new BucketManager(auth);
-		BucketManager.Batch ops = new BucketManager.Batch().delete("nian", "12313");
-		try {
-			Response r = bucketManager.batch(ops);
-			BatchStatus[] bs = r.jsonToObject(BatchStatus[].class);
-			for (BatchStatus b : bs) {
-				System.out.println(b.code);
-			}
+		String token=auth.uploadToken("nian", null, 3600, new StringMap().put("saveKey", "userid-souid-imagesid-asdfasdfasdfasdfasdfasdfasdf11118409891212311"));
+		String filePath ="D://18409891212311.jpg";
+		//String filePath ="/Users/yuanlin/Pictures/20060808030011fp_829118.jpg";
 
-		} catch (QiniuException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		byte[] buffer = getFilebyteArray(filePath);
+		String key =upload(buffer,null,token);
+		String imagesURL1 = "http://7xkbp1.com1.z0.glb.clouddn.com/userid-souid-imagesid-asdfasdfasdfasdfasdfasdfasdf11118409891212311";
+		String imagesURL2 = "http://7xkbp1.com1.z0.glb.clouddn.com/11118409891212311.jpg?imageView2/1/w/111/h/111/q/24";
+		String imagesURL3 = "http://7xkbp1.com1.z0.glb.clouddn.com/yuanlin2010111685652449.JPG";
+		String urlSigned1 = auth.privateDownloadUrl(imagesURL1);
+		String urlSigned2 = auth.privateDownloadUrl(imagesURL2,3600*24);
+		String urlSigned3 = auth.privateDownloadUrl(imagesURL3,3600*1);
+		System.out.println(urlSigned1);
+		System.out.println(urlSigned2);
+		System.out.println(urlSigned3);
+
+
+
 	}
 
-	private String upload(byte[] byteOrFile, String key, String token) {
+	private String  upload(byte[] byteOrFile,String key,String token ) {
 		UploadManager uploadManager = new UploadManager();
 		try {
-			Response res = uploadManager.put(byteOrFile, null, token);
+			Response res = uploadManager.put(byteOrFile, null,token);
 			MyRet ret = res.jsonToObject(MyRet.class);
 			System.out.println(res.toString());
 			System.out.println(res.bodyString());
-			JSONObject hashkeyJson = (JSONObject) JSONValue.parse(res
-					.bodyString());
+			JSONObject hashkeyJson =(JSONObject) JSONValue.parse(res.bodyString());
 			String hash = (String) hashkeyJson.get("hash");
 			key = (String) hashkeyJson.get("key");
 			System.out.println(hash);
 			System.out.println(key);
 
 			return key;
+
 
 		} catch (QiniuException e) {
 			Response r = e.response;
@@ -74,29 +68,34 @@ public class QiniuBiz {
 				// 响应的文本信息
 				System.out.println(r.bodyString());
 			} catch (QiniuException e1) {
-				// ignore
+				//ignore
 			}
 		}
 		return null;
 	}
 
 	private byte[] getFilebyteArray(String filePath) {
-		byte[] buffer = null;
-		try {
+		byte[] buffer =null;
+		try  {
 			File file = new File(filePath);
 			FileInputStream fis = new FileInputStream(file);
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			byte[] b = new byte[1024];
 			int n;
-			while ((n = fis.read(b)) != -1) {
+			while ((n = fis.read(b)) != -1)
+			{
 				bos.write(b, 0, n);
 			}
 			fis.close();
 			bos.close();
 			buffer = bos.toByteArray();
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 		return buffer;
@@ -109,5 +108,7 @@ public class QiniuBiz {
 		public int width;
 		public int height;
 	}
+
+
 
 }

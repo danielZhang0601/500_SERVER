@@ -34,12 +34,13 @@ public class QiniuService {
     public static final String SAVE_KEY= "saveKey";//用于更换存储图片名称
     public static final String QINIU_DOMAIN = "7xkbp1.com1.z0.glb.clouddn.com";
     public static final String PHONE_STYLE = "?imageView2/1/w/111/h/111/q/24";
-    public static final long QINIU_TIME_OUT = 3600*24;
+    public static final long QINIU_TIME_OUT = 3600*12;
+    private UploadManager uploadManager = new UploadManager();
+    private Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 
     public void uploadToQiniu(byte[] bytes, String qiniuImageName) {
-        Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+
         String token = auth.uploadToken(BUCKET_NAME, null, TIME_OUT, new StringMap().put(SAVE_KEY, qiniuImageName));
-        UploadManager uploadManager = new UploadManager();
         try {
             Response res = uploadManager.put(bytes, null, token);
             JSONObject hashkeyJson = (JSONObject) JSONValue.parse(res.bodyString());
@@ -65,7 +66,6 @@ public class QiniuService {
             e.printStackTrace();
         }
         if(smallImagesList!=null){
-            Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
             for(ImageDTO smallImage : smallImagesList){
                 String qiniuImegeName =  smallImage.getUserid()+"-"+smallImage.getSouvenirid()+"-"+smallImage.getId();
                 String qiniuImageUrl = "http://"+QINIU_DOMAIN+"/"+qiniuImegeName;

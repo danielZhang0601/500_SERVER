@@ -68,9 +68,19 @@
 		delete from recordinfo where id = #{value}
 	</delete>
 
+	<delete id="deleteSouRecordForSouid" parameterType="String">
+		delete from recordinfo where souvenirid = #{value}
+	</delete>
+
 	<delete id="deleteImage" parameterType="String">
 		delete from image where id = #{value}
 	</delete>
+
+	<delete id="deleteImageForSouid" parameterType="String">
+		delete from image where souvenirid = #{value}
+	</delete>
+
+
 
 	<!--#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{#{-->
 	<!--#{#{#{ UPDATE ZONE       #{#{#{-->
@@ -133,9 +143,9 @@
 
 	<insert id="createClearQiniu" parameterType="ClearQiniuDTO">
 		insert into
-		clearqiniu (id,imageid,timerecord)
+		clearqiniu (id,imageid,timerecord,userid,souvenirid)
 		values
-		(#{id},#{imageid},#{timerecord})
+		(#{id},#{imageid},#{timerecord},#{userid},#{souvenirid})
 	</insert>
 
 </mapper>

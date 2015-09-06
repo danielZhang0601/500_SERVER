@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +25,32 @@ public class SouvenirService {
     @Autowired
     UserDAO userDAO;
 
-    public boolean deleteSou(String souvenirid) {
+
+    public boolean deleteSou(String souvenirid,String userid) {
         try {
-            return souDAO.deleteSou(souvenirid);
+            //清除藏品相应的图片信息，记录等相关信息
+
+            //清除图片 查询图片列表信息
+            Map paramMap = new HashMap<String ,String>();
+            paramMap.put("souid",souvenirid);
+            paramMap.put("userid",userid);
+            List<ImageDTO> souImages = souDAO.getSouSmallImagesList(paramMap);
+            if(souImages!=null){
+                for(ImageDTO souImage : souImages){
+                    ClearQiniuDTO clearqiniudto = new ClearQiniuDTO();
+                    clearqiniudto.setId(SysUtils.getClearQiniuID());
+                    clearqiniudto.setImageid(souImage.getId());
+                    clearqiniudto.setSouvenirid(souvenirid);
+                    clearqiniudto.setUserid(userid);
+                    clearqiniudto.setTimerecord(SysUtils.getNowTimeStr());
+                    souDAO.createClearQiniu(clearqiniudto);
+                }
+            }
+
+            if(souDAO.deleteImageForSouid(souvenirid)&&souDAO.deleteSouRecordForSouid(souvenirid)){
+                return souDAO.deleteSou(souvenirid);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -228,12 +252,17 @@ public class SouvenirService {
             return false;
     }
 
-    public void deleteImage(String imageId) {
+    public void deleteImage( Map<String,String> paramMap) {
         try {
+            String imageId =paramMap.get("imageId");
+            String userid =paramMap.get("userid");
+            String souid =paramMap.get("souid");
             souDAO.deleteImage(imageId);
             ClearQiniuDTO clearqiniudto = new ClearQiniuDTO();
             clearqiniudto.setId(SysUtils.getClearQiniuID());
             clearqiniudto.setImageid(imageId);
+            clearqiniudto.setSouvenirid(souid);
+            clearqiniudto.setUserid(userid);
             clearqiniudto.setTimerecord(SysUtils.getNowTimeStr());
             souDAO.createClearQiniu(clearqiniudto);
         } catch (SQLException e) {
