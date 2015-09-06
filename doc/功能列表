@@ -21,7 +21,7 @@
 	  		  
     2、新增器物功能-用户上传图片，填写评论，选择年代，
       -URL：/createsou?userid=  创建物品基础信息---点击新增藏品按钮调用传 userid
-      -URL：#/action=createimage  新增图片
+      -URL：/action=createimage?userid=U1440139979366&souid=S1440165538460  新增图片
       -URL：/updatesoubaseinfo?id=S1440165552428&dynastycode=11&lengths=17&wides=13&highs=18&weights=1200 更新器物属性 -长、宽、高、重量、年代
       -URL：/createrecord?souvenirid=S1440165552428&content=testtesttesttesttest
       -post传输：图片数据流，藏品的长、宽、高、重量，年代选择，评论内容。

@@ -136,9 +136,9 @@
 
 	<insert id="createSouImage" parameterType="ImageDTO">
 		insert into
-		image (id,souvenirid,imagecode,imagesort,timerecord)
+		image (id,souvenirid,imagescode,imagesort,timerecord,userid)
 		values
-		(#{id},#{souvenirid},#{imagecode},#{imagesort},#{timerecord})
+		(#{id},#{souvenirid},#{imagescode},#{imagesort},#{timerecord},#{userid})
 	</insert>
 
 	<insert id="createClearQiniu" parameterType="ClearQiniuDTO">

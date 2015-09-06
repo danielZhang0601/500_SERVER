@@ -223,20 +223,21 @@ public class SouvenirService {
             return false;
     }
 
-    public String createImages(String userid, String souid) {
-        String imageid= SysUtils.getImageID();
-        ImageDTO imagedto= new ImageDTO();
-        imagedto.setId(imageid);
-        imagedto.setUserid(userid);
-        imagedto.setSouvenirid(souid);
-        imagedto.setImagessort("0");//TODO 图片排序功能，后面需要优化
-        imagedto.setTimerecord(SysUtils.getNowTimeStr());
+    public ImageDTO createImages(String userid, String souid) {
+        ImageDTO imagedto=null;
         try {
+            String imageid= SysUtils.getImageID();
+            imagedto= new ImageDTO();
+            imagedto.setId(imageid);
+            imagedto.setUserid(userid);
+            imagedto.setSouvenirid(souid);
+            imagedto.setImagesort("0");//TODO 图片排序功能，后面需要优化
+            imagedto.setTimerecord(SysUtils.getNowTimeStr());
             souDAO.createSouImage(imagedto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return imageid;
+        return imagedto;
     }
 
     public boolean createSouvenir(SouvenirDTO soudto) {
