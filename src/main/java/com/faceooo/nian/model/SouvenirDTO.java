@@ -13,8 +13,26 @@ public class SouvenirDTO extends BaseDTO{
 	public String weights;
 	public String flowstatus;
 	public String timerecord;
-	
-	
+	public String mainImageID;
+	public String mainImageURL;
+
+
+	public String getMainImageURL() {
+		return mainImageURL;
+	}
+
+	public void setMainImageURL(String mainImageURL) {
+		this.mainImageURL = mainImageURL;
+	}
+
+	public String getMainImageID() {
+		return mainImageID;
+	}
+
+	public void setMainImageID(String mainImageID) {
+		this.mainImageID = mainImageID;
+	}
+
 	public String getUserid() {
 		return userid;
 	}
