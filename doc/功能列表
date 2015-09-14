@@ -6,8 +6,13 @@
 	  -删除器物分类：长按器物分类，选择删除按钮
 	  -点击新增器物类别：弹出输入框，输入类别，点击确认
 	  -用户对器物更换分类功能：拖动器物到分类列表上方
-	  -URL：/usersouhome?userid=U1440139979366&userphone=18682278869
-	  -URL：/deletesou?souid=S1440165348663            post:souid=
+	  -URL：/usersouhome?userid=U1440139979366&userphone=18682278869--修改,一次查询所有数据传出,
+	      数据包含:
+	            1.分类列表,每个分类的数量
+	            2.每个分类的物品信息(id),七牛的小图片url
+	            3.每个分类种的每个年代的物品数量
+	            
+	  -URL：/deletesou?souid=S1440165348663      注意:需要在分类列表里面减一      post:souid=
 	  -URL：/deletesoutype?soutypeid=ST1440256367658
 	  -URL：/updatesoutype?id=ST1440144370686&typename=玉器
 	  -URL：/createsoutype?soutypename=瓷器&userid=U1440139979366
@@ -20,7 +25,7 @@
 	  -搜索显示内容：若只搜索到一件物品则定位其分类和器物在页面上的位置。若多个器物则列出所有器物。
 	  		  
     2、新增器物功能-用户上传图片，填写评论，选择年代，
-      -URL：/createsou?userid=  创建物品基础信息---点击新增藏品按钮调用传 userid
+      -URL：/createsou?userid=  创建物品基础信息---点击新增藏品按钮调用传  注意:需要在物品分类列表里面数量加一 userid
       -URL：/createimage?userid=U1440139979366&souid=S1440165538460  新增图片
       -URL：/updatesoubaseinfo?id=S1440165552428&dynastycode=11&lengths=17&wides=13&highs=18&weights=1200 更新器物属性 -长、宽、高、重量、年代
       -URL：/createrecord?souvenirid=S1440165552428&content=testtesttesttesttest
