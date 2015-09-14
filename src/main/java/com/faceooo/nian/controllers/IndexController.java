@@ -4,7 +4,6 @@ package com.faceooo.nian.controllers;
  * Created by qin on 15/8/14.
  */
 import com.faceooo.nian.model.DemoDTO;
-import com.faceooo.nian.model.UserinfoDTO;
 import com.faceooo.nian.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

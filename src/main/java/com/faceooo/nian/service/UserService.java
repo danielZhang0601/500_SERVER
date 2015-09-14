@@ -2,6 +2,8 @@ package com.faceooo.nian.service;
 
 import com.faceooo.nian.dao.SouDAO;
 import com.faceooo.nian.dao.UserDAO;
+import com.faceooo.nian.model.ImageDTO;
+import com.faceooo.nian.model.SouvenirDTO;
 import com.faceooo.nian.model.SouvenirtypeDTO;
 import com.faceooo.nian.model.UserinfoDTO;
 import com.faceooo.nian.utils.SysUtils;
@@ -26,26 +28,41 @@ public class UserService {
     @Autowired
     SouDAO souDAO;
 
+    @Autowired
+    QiniuService qiniuService;
+
+    //一次查询出所有数据返回给前端
     public JSONObject getUserHomeInfo(UserinfoDTO userinfo) {
         JSONObject json = new JSONObject();
         try {
             // 查询用户物品的分类列表
-            List<SouvenirtypeDTO> soutypeList = userDAO
-                    .queryUserSouTypeList(userinfo);
+            List<SouvenirtypeDTO> soutypeList = userDAO.queryUserSouTypeList(userinfo);
             JSONArray soutypeListjson = new JSONArray();
+
+            ImageDTO tempImage =  new ImageDTO();
+            tempImage.setUserid(userinfo.getId());
+
+            SouvenirDTO paramSou = new SouvenirDTO();
+            paramSou.setUserid(userinfo.getId());
+
             for (SouvenirtypeDTO soutype : soutypeList) {
+                paramSou.setSouvenirtypeid(soutype.getId());
+                //通过souTypeID查询物品信息
+                List<SouvenirDTO> souList = souDAO.getSouvenirListForType(paramSou);
+                JSONArray souListjson = new JSONArray();
+                for (SouvenirDTO souDTO : souList){
+                    tempImage.setSouvenirid(souDTO.getId());
+                    tempImage.setId(souDTO.getMainImageID());
+                    qiniuService.getSmallImageURL(tempImage);
+                    souDTO.setMainImageURL(tempImage.getImagesmallurl());
+                    souListjson.add(souDTO.getDtoToJson());
+
+                }
+                json.put(soutype.getId(), souListjson);
                 soutypeListjson.add(soutype.getDtoToJson());
             }
-            json.put("soutypeList", soutypeListjson);
+            json.put("souTypeList", soutypeListjson);
 
-            // 查询最新录入的10个器物列表, 默认类型为第一个类型，0是未分类，从1开始计算
-            List<SouvenirtypeDTO> userSouList = souDAO
-                    .queryUserSouListForHome(userinfo);
-            JSONArray souListjson = new JSONArray();
-            for (SouvenirtypeDTO soudto : userSouList) {
-                souListjson.add(soudto.getDtoToJson());
-            }
-            json.put("souList", souListjson);
 
         } catch (SQLException e) {
             e.printStackTrace();

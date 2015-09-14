@@ -78,14 +78,20 @@ public class QiniuService {
         return smallImagesList;
     }
 
-    public ImageDTO getImageURL(ImageDTO imageDTO){
+    public void getImageURL(ImageDTO imageDTO){
         String qiniuImegeName =  imageDTO.getUserid()+"-"+imageDTO.getSouvenirid()+"-"+imageDTO.getId();
         String qiniuImageUrl = "http://"+QINIU_DOMAIN+"/"+qiniuImegeName;
         String qiniuSmallImageURL = auth.privateDownloadUrl(qiniuImageUrl+PHONE_STYLE,TIME_OUT);
         String qiniuOrigImageURL = auth.privateDownloadUrl(qiniuImageUrl,QINIU_TIME_OUT);
         imageDTO.setImagesmallurl(qiniuSmallImageURL);
         imageDTO.setImageorigurl(qiniuOrigImageURL);
-        return imageDTO;
+    }
+
+    public void getSmallImageURL(ImageDTO imageDTO){
+        String qiniuImegeName =  imageDTO.getUserid()+"-"+imageDTO.getSouvenirid()+"-"+imageDTO.getId();
+        String qiniuImageUrl = "http://"+QINIU_DOMAIN+"/"+qiniuImegeName;
+        String qiniuSmallImageURL = auth.privateDownloadUrl(qiniuImageUrl+PHONE_STYLE,TIME_OUT);
+        imageDTO.setImagesmallurl(qiniuSmallImageURL);
     }
 
 }

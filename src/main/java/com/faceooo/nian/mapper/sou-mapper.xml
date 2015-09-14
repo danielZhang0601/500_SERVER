@@ -39,7 +39,7 @@
 	</select>
 
 	<select id="getSouvenirListForType" resultType="SouvenirDTO"  parameterType="SouvenirDTO">
-		select * from souvenir where userid = #{userid} AND  souvenirtypeid = #{souvenirtypeid} order by dynastycode LIMIT 20
+		select sou.id, im.id as mainImageID  from souvenir sou,image im where sou.id = im.souvenirid and im.imagesort='1' sou.userid = #{userid} AND  sou.souvenirtypeid = #{souvenirtypeid} order by sou.dynastycode
 	</select>
 
     <select id="getSouSmallImagesList" resultType="ImageDTO" parameterType="java.util.Map">
