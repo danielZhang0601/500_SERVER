@@ -53,6 +53,7 @@ public class UserService {
                 for (SouvenirDTO souDTO : souList){
                     tempImage.setSouvenirid(souDTO.getId());
                     tempImage.setId(souDTO.getMainImageID());
+                    //souDTO.setMainImageURL("http://imagesSmallURL/test.jpg");
                     qiniuService.getSmallImageURL(tempImage);
                     souDTO.setMainImageURL(tempImage.getImagesmallurl());
                     souListjson.add(souDTO.getDtoToJson());

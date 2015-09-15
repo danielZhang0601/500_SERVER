@@ -1,0 +1,260 @@
+一、主键ID规则
+ST打头的是藏品分类ID
+I打头的是image 图片ID
+S打头的是藏品ID
+U打头的是用户ID
+
+
+二、json数据结构说明
+1、souTypeList  key  是获取所有分类的list
+2、ST1442238930176  物品分类ID 做Key  是获取该分类下所有的物品列表的  有的"ST1442238920577": [] 为空
+       物品信息为：
+                "mainImageURL": "http://imagesSmallURL/test.jpg",   主图的URL  
+                "mainImageID": "I1441532133899",    主图的ID
+                "id": "S1442239162323"              藏品ID
+
+
+
+
+{
+    "result": {
+        "ST1442238930176": [],
+        "souTypeList"://分类列表 [
+            {
+                "typesort": "0",
+                "timerecord": "2015-08-21 16:06:10",
+                "id": "ST1440144370686",
+                "userid": "U1440139979366",
+                "typename": "玉器",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-08-22 21:56:18",
+                "id": "ST1440251778994",
+                "userid": "U1440139979366",
+                "typename": "青铜器",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-08-22 21:56:59",
+                "id": "ST1440251819576",
+                "userid": "U1440139979366",
+                "typename": "杂项",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:52:49",
+                "id": "ST1442238769507",
+                "userid": "U1440139979366",
+                "typename": "珠子",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:53:28",
+                "id": "ST1442238808412",
+                "userid": "U1440139979366",
+                "typename": "瓷器",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:54:39",
+                "id": "ST1442238879569",
+                "userid": "U1440139979366",
+                "typename": "钱币",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:54:50",
+                "id": "ST1442238890017",
+                "userid": "U1440139979366",
+                "typename": "紫砂",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:55:02",
+                "id": "ST1442238902263",
+                "userid": "U1440139979366",
+                "typename": "赏石",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:55:09",
+                "id": "ST1442238909271",
+                "userid": "U1440139979366",
+                "typename": "书画",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:55:20",
+                "id": "ST1442238920577",
+                "userid": "U1440139979366",
+                "typename": "古典家具",
+                "typecount": "0"
+            },
+            {
+                "timerecord": "2015-09-14 21:55:30",
+                "id": "ST1442238930176",
+                "userid": "U1440139979366",
+                "typename": "文玩",
+                "typecount": "0"
+            }
+        ],
+        "ST1442238920577": [],
+        "ST1442238769507": [],
+        "ST1442238890017": [
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532133899",
+                "id": "S1442239162323"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532663902",
+                "id": "S1442239158137"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532672068",
+                "id": "S1442239149428"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532673386",
+                "id": "S1442239056186"
+            }
+        ],
+        "ST1440251819576": [
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674444",
+                "id": "S1442239044505"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674466",
+                "id": "S1442239040466"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674488",
+                "id": "S1442239036386"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674499",
+                "id": "S1442239034319"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674511",
+                "id": "S1442239032322"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674522",
+                "id": "S1442239030267"
+            }
+        ],
+        "ST1442238879569": [],
+        "ST1440144370686": [
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674533",
+                "id": "S1442239027671"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674544",
+                "id": "S1442239025482"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674555",
+                "id": "S1442239023327"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674566",
+                "id": "S1442239015106"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674577",
+                "id": "S1440165552428"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674588",
+                "id": "S1440165538460"
+            }
+        ],
+        "ST1442238909271": [
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441529812163",
+                "id": "S1442239170441"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441530265822",
+                "id": "S1442239168349"
+            }
+        ],
+        "ST1440251778994": [],
+        "ST1442238808412": [
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532671199",
+                "id": "S1442239052258"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532672299",
+                "id": "S1442239050370"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674411",
+                "id": "S1442239052258"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674422",
+                "id": "S1442239048567"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674433",
+                "id": "S1442239046545"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674455",
+                "id": "S1442239042517"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532674462",
+                "id": "S1442239054187"
+            }
+        ],
+        "ST1442238902263": [
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441530174492",
+                "id": "S1442239166315"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441530319659",
+                "id": "S1442239164295"
+            },
+            {
+                "mainImageURL": "http://imagesSmallURL/test.jpg",
+                "mainImageID": "I1441532136368",
+                "id": "S1442239160237"
+            }
+        ]
+    },
+    "error": "false"
+}
