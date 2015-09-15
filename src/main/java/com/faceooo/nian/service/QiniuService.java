@@ -66,14 +66,7 @@ public class QiniuService {
             e.printStackTrace();
         }
         if(smallImagesList!=null){
-            for(ImageDTO smallImage : smallImagesList){
-                String qiniuImegeName =  smallImage.getUserid()+"-"+smallImage.getSouvenirid()+"-"+smallImage.getId();
-                String qiniuImageUrl = "http://"+QINIU_DOMAIN+"/"+qiniuImegeName;
-                String qiniuSmallImageURL = auth.privateDownloadUrl(qiniuImageUrl+PHONE_STYLE,TIME_OUT);
-                String qiniuOrigImageURL = auth.privateDownloadUrl(qiniuImageUrl,QINIU_TIME_OUT);
-                smallImage.setImagesmallurl(qiniuSmallImageURL);
-                smallImage.setImageorigurl(qiniuOrigImageURL);
-            }
+            smallImagesList.forEach(this::getImageURL);
         }
         return smallImagesList;
     }
