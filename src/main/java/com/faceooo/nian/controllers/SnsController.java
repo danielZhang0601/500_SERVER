@@ -1,9 +1,20 @@
 package com.faceooo.nian.controllers;
 
+import com.faceooo.nian.model.ImageDTO;
+import com.faceooo.nian.service.QiniuService;
+import com.faceooo.nian.service.SouvenirService;
 import com.faceooo.nian.utils.RestConstants;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yuanlin on 15/8/17.
@@ -13,12 +24,34 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SnsController {
 
+    @Autowired
+    QiniuService qiniuService;
+
+    @Autowired
+    SouvenirService souvenirService;
+
     @RequestMapping(value = RestConstants.USER_WX)
-    public ModelAndView shareWeixin(){
+    @ResponseBody
+    public JSONObject shareWeixin(String userid,String souid){
         //TODO 共享微信
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("msg", "shareWeixin");
-        return mav;
+        JSONObject returnJson = new JSONObject();
+        //获取物品属性获取用户对物品的评论
+        returnJson =souvenirService.getSouvenirInfo(souid);
+        //获取物品小图片list表
+        Map paramMap = new HashMap<String ,String>();
+        paramMap.put("souid",souid);
+        paramMap.put("userid",userid);
+        List<ImageDTO> souSmallImages = qiniuService.getSouSmallImagesList(paramMap);
+        JSONArray souSmallImagesJson = new JSONArray();
+        if(souSmallImages!=null){
+            for(ImageDTO imageDTO : souSmallImages){
+                souSmallImagesJson.add(imageDTO.getDtoToJson());
+            }
+        }
+        returnJson.put("souimagelist",souSmallImagesJson);
+        returnJson.put("souimagelistcount",souSmallImagesJson.size());
+
+        return returnJson;
     }
 
 }

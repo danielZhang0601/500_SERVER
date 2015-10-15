@@ -44,7 +44,7 @@
 	  -显示内容：用户展示器物图片，时间轴，年代，长宽高重量，评论
 	  
 	4、共享微信功能
-	-URL：?action=shareweixin  post:  souvenirid=
+	-URL：/shareweixin?userid=U1440139979366&souid=S1442239015106
 	显示内容：用户展示器物图片，时间轴，年代，长宽高重量，评论
 	
 	
