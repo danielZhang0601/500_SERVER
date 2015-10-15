@@ -30,9 +30,10 @@ public class QiniuBiz {
 
 		byte[] buffer = getFilebyteArray(filePath);
 		String key =upload(buffer,null,token);
-		String imagesURL1 = "http://7xkbp1.com1.z0.glb.clouddn.com/userid-souid-imagesid-asdfasdfasdfasdfasdfasdfasdf11118409891212311";
-		String imagesURL2 = "http://7xkbp1.com1.z0.glb.clouddn.com/11118409891212311.jpg?imageView2/1/w/111/h/111/q/24";
-		String imagesURL3 = "http://7xkbp1.com1.z0.glb.clouddn.com/yuanlin2010111685652449.JPG";
+		String imagesURL1 = "http://7xkbp1.com1.z0.glb.clouddn.com/U1440139979366-S1440165538460-I1441532672068-2bei";
+		String imagesURL2 = "http://7xkbp1.com1.z0.glb.clouddn.com/U1440139979366-S1440165538460-I1441532672068?imageView2/2/w/80/q/100";
+		String imagesURL3 = "http://7xkbp1.com1.z0.glb.clouddn.com/U1440139979366-S1440165538460-I1441532672068?imageView2/2/w/512/q/100";
+
 		String urlSigned1 = auth.privateDownloadUrl(imagesURL1);
 		String urlSigned2 = auth.privateDownloadUrl(imagesURL2,3600*24);
 		String urlSigned3 = auth.privateDownloadUrl(imagesURL3,3600*1);
