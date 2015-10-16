@@ -58,7 +58,9 @@
     1、用户关键字标签列表
     2、物品列表：
             全部
+
             关键字标签
+            -URL: /createshaibaolabel?labelname=&labelen=   labelen:英文简写头一个字母
     3、我的藏品
     4、交流意向
 
