@@ -16,6 +16,7 @@
         <typeAlias alias="TimeriverDTO" type="com.faceooo.nian.model.TimeriverDTO"/>
         <typeAlias alias="UserinfoDTO" type="com.faceooo.nian.model.UserinfoDTO"/>
         <typeAlias alias="ClearQiniuDTO" type="com.faceooo.nian.model.ClearQiniuDTO"/>
+        <typeAlias alias="ShaibaoLabelDTO" type="com.faceooo.nian.model.ShaibaoLabelDTO"/>
     </typeAliases>
 <!--
     <environments default="development">

@@ -35,4 +35,8 @@ public class SysUtils {
     public static String getClearQiniuID() {
         return "CQ"+Long.toString(System.currentTimeMillis());
     }
+
+	public static String getShaibaoLabelID() {
+		return "SL"+Long.toString(System.currentTimeMillis());
+	}
 }

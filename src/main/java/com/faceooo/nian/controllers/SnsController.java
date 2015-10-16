@@ -35,22 +35,32 @@ public class SnsController {
     public JSONObject shareWeixin(String userid,String souid){
         //TODO 共享微信
         JSONObject returnJson = new JSONObject();
+        String  error = "false";
         //获取物品属性获取用户对物品的评论
-        returnJson =souvenirService.getSouvenirInfo(souid);
-        //获取物品小图片list表
-        Map paramMap = new HashMap<String ,String>();
-        paramMap.put("souid",souid);
-        paramMap.put("userid",userid);
-        List<ImageDTO> souSmallImages = qiniuService.getSouSmallImagesList(paramMap);
-        JSONArray souSmallImagesJson = new JSONArray();
-        if(souSmallImages!=null){
-            for(ImageDTO imageDTO : souSmallImages){
-                souSmallImagesJson.add(imageDTO.getDtoToJson());
+        JSONObject souInfoJson =souvenirService.getSouvenirInfo(souid);
+        if (souInfoJson!=null){
+            //获取物品小图片list表
+            Map paramMap = new HashMap<String ,String>();
+            paramMap.put("souid",souid);
+            paramMap.put("userid",userid);
+            List<ImageDTO> souSmallImages = qiniuService.getSouSmallImagesList(paramMap);
+            JSONArray souSmallImagesJson = new JSONArray();
+            if(souSmallImages!=null){
+                for(ImageDTO imageDTO : souSmallImages){
+                    souSmallImagesJson.add(imageDTO.getDtoToJson());
+                }
             }
-        }
-        returnJson.put("souimagelist",souSmallImagesJson);
-        returnJson.put("souimagelistcount",souSmallImagesJson.size());
+            souInfoJson.put("souimagelist",souSmallImagesJson);
+            souInfoJson.put("souimagelistcount",souSmallImagesJson.size());
 
+        }else{
+            error = "true";
+            returnJson.put("msg", "藏品不存在！");
+        }
+
+
+        returnJson.put("error", error);
+        returnJson.put("result", souInfoJson);
         return returnJson;
     }
 
